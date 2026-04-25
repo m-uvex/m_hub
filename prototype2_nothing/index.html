@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2much_potato — Musa's Portfolio</title>
+  <meta name="description" content="2much_potato — Minecraft builder, content creator. Medieval town series, memes & tutorials.">
+
+  <!-- Fonts: Space Grotesk + Space Mono (Nothing system) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+  <!-- NAVIGATION -->
+  <nav id="nav" class="nav">
+    <div class="nav-inner">
+      <button class="nav-card" data-page="home" aria-label="Home">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </span>
+        <span class="nav-label">Home</span>
+      </button>
+
+      <button class="nav-card" data-page="potato" aria-label="@2much_potato">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </span>
+        <span class="nav-label">@2much_potato</span>
+      </button>
+
+      <button class="nav-card" data-page="about" aria-label="About Me">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </span>
+        <span class="nav-label">About Me</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <main id="page-home" class="page">
+    <div class="home-greeting">
+      <h1>musa's stuff</h1>
+      <p class="subtitle">A collection of projects, creations & experiments.</p>
+    </div>
+
+    <div class="home-projects-grid">
+      <!-- Primary Project Card -->
+      <article class="project-card project-card--primary reveal reveal-d1" id="btn-learn-more-potato">
+        <div class="card-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Content Creator
+        </div>
+        <h2>Medieval Town<br>Building Series</h2>
+        <p>Every 2 days a new building, suggested by you. Season 2 is underway and the town is growing fast. Catch every build on YouTube, Instagram & TikTok.</p>
+        <div class="card-actions">
+          <button class="btn btn--solid">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            See the project
+          </button>
+          <a class="btn btn--ghost" href="https://www.youtube.com/@2much_potato" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            YouTube
+          </a>
+        </div>
+      </article>
+
+      <!-- Secondary Card -->
+      <article class="project-card project-card--secondary reveal reveal-d2" id="btn-learn-more-about">
+        <div class="card-avatar">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h2>About Me</h2>
+        <p>More about who I am, what I do, and what I'm up to — coming soon.</p>
+        <div class="card-actions">
+          <button class="btn btn--solid btn--dark">
+            Read more
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-logo">@2much_potato</div>
+      <p class="footer-tagline">Minecraft. Pixels. Builds.</p>
+      <div class="footer-links">
+        <a href="https://www.youtube.com/@2much_potato" target="_blank" rel="noopener">YouTube</a>
+        <span class="divider">·</span>
+        <a href="https://www.instagram.com/2much_potato" target="_blank" rel="noopener">Instagram</a>
+        <span class="divider">·</span>
+        <a href="https://www.tiktok.com/@2much_potato" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- 2MUCH_POTATO PAGE -->
+  <main id="page-potato" class="page">
+    <!-- Hero Section -->
+    <section class="potato-hero">
+      <div class="hero-card">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Season 2 · Medieval Town
+          </div>
+          <h1>Building a<br>Town — Together.</h1>
+          <p class="hero-desc">Every 2 days, a new building. Suggested by you, built by me. Follow the journey as our medieval town grows one build at a time.</p>
+          <div class="hero-actions">
+            <button class="btn btn--solid btn--accent" id="btn-suggest">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Suggest a Build
+            </button>
+            <button class="btn btn--ghost btn--light" id="btn-more">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-skin" id="skin-container">
+          <img class="skin-img" src="images/skin.png" alt="2much_potato Minecraft skin" id="skin-img">
+        </div>
+
+      </div>
+    </section>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+
+    <!-- Media Section -->
+    <section class="section reveal" id="section-media">
+      <div class="section-label">Media</div>
+      <div class="media-container">
+        <!-- YouTube Feed -->
+        <div class="media-youtube">
+          <div class="media-header">
+            <div class="media-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF0000"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+              Latest Videos
+            </div>
+            <a class="media-link" href="https://www.youtube.com/@2much_potato" target="_blank" rel="noopener">
+              View all →
+            </a>
+          </div>
+          <div class="yt-feed" id="yt-feed">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Socials Bar -->
+        <div class="media-socials">
+          <a class="social-btn social-btn--yt" href="https://www.youtube.com/@2much_potato" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            <span class="social-tooltip">YouTube</span>
+          </a>
+          <a class="social-btn social-btn--ig" href="https://www.instagram.com/2much_potato" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span class="social-tooltip">Instagram</span>
+          </a>
+          <a class="social-btn social-btn--tt" href="https://www.tiktok.com/@2much_potato" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.37 6.37 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"/></svg>
+            <span class="social-tooltip">TikTok</span>
+          </a>
+          <div class="social-btn social-btn--disabled" aria-label="Discord — Coming Soon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+            <span class="social-tooltip">Discord — Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Builds Carousel -->
+    <section class="section reveal reveal-d1" id="section-builds">
+      <div class="section-label">Buildings of the Day</div>
+      <div class="builds-container" id="builds-container">
+        <div class="builds-inner">
+          <div class="builds-info">
+            <div class="builds-label">Buildings of the Day</div>
+            <div id="builds-entries">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+          <div class="builds-image">
+            <img id="builds-img" src="" alt="Featured build">
+            <div class="builds-placeholder" id="builds-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Build screenshot<br>coming soon</span>
+            </div>
+          </div>
+        </div>
+        <div class="builds-dots" id="builds-dots">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner -->
+    <section class="section reveal reveal-d2">
+      <div class="banner">
+        <div class="banner-text">
+          <h3>Like what you see?</h3>
+          <p>Drop a follow and never miss a build.</p>
+        </div>
+        <div class="banner-socials">
+          <a class="social-btn social-btn--yt" href="https://www.youtube.com/@2much_potato" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+          <a class="social-btn social-btn--ig" href="https://www.instagram.com/2much_potato" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+          </a>
+          <a class="social-btn social-btn--tt" href="https://www.tiktok.com/@2much_potato" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.37 6.37 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section reveal reveal-d3" id="section-contact">
+      <div class="section-label">Get in Touch</div>
+      <div class="contact-card">
+        <div class="contact-text">
+          <h3>Wanna suggest a build,<br>collab, or just chat?</h3>
+          <p>Don't be afraid to reach out!</p>
+        </div>
+        <div class="contact-list">
+          <a class="contact-item" href="https://www.instagram.com/2much_potato" target="_blank" rel="noopener">
+            <div class="contact-icon contact-icon--ig">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+            </div>
+            <span class="contact-label">Instagram DM</span>
+            <svg class="contact-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a class="contact-item" href="https://www.tiktok.com/@2much_potato" target="_blank" rel="noopener">
+            <div class="contact-icon contact-icon--tt">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.37 6.37 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"/></svg>
+            </div>
+            <span class="contact-label">TikTok DM</span>
+            <svg class="contact-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <div class="contact-item contact-item--disabled">
+            <div class="contact-icon contact-icon--dc">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+            </div>
+            <span class="contact-label">Discord Server</span>
+            <span class="contact-badge">Soon</span>
+          </div>
+          <div class="contact-item contact-item--disabled">
+            <div class="contact-icon contact-icon--dc">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+            </div>
+            <span class="contact-label">Discord DM</span>
+            <span class="contact-badge">Soon</span>
+          </div>
+          <a class="contact-item" href="mailto:2muchpotato@example.com">
+            <div class="contact-icon contact-icon--email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <span class="contact-label">Email</span>
+            <svg class="contact-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-logo">@2much_potato</div>
+      <p class="footer-tagline">Minecraft. Medieval. Memories.</p>
+      <div class="footer-links">
+        <a href="https://www.youtube.com/@2much_potato" target="_blank" rel="noopener">YouTube</a>
+        <span class="divider">·</span>
+        <a href="https://www.instagram.com/2much_potato" target="_blank" rel="noopener">Instagram</a>
+        <span class="divider">·</span>
+        <a href="https://www.tiktok.com/@2much_potato" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ABOUT PAGE -->
+  <main id="page-about" class="page">
+    <div class="about-card reveal">
+      <div class="about-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <h1>About Me</h1>
+      <p class="about-status">Under construction</p>
+      <p class="about-text">This page is being built. Check back soon for more.</p>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-logo">@2much_potato</div>
+      <p class="footer-tagline">Built with precision</p>
+    </footer>
+  </main>
+
+  <script src="builds.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
