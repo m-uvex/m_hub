@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUVEX.OS · Musa Murad</title>
+  <meta name="description" content="Musa Murad (m_uvex). Web developer, tinkerer, NixOS builder, content creator. A hub, not a homepage.">
+  <meta name="theme-color" content="#08080a">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ===================== HUD ===================== -->
+  <div class="hud" aria-hidden="true">
+    <div class="hud-corner hud-corner--tl"></div>
+    <div class="hud-corner hud-corner--tr"></div>
+    <div class="hud-corner hud-corner--bl"></div>
+    <div class="hud-corner hud-corner--br"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar__brand" data-brand>
+      <span class="brand-orb"></span>
+      MUVEX<span class="brand-dot">.</span>OS
+    </div>
+    <div class="topbar__path" data-path>~/index</div>
+    <div class="topbar__status">
+      <span class="status-dot"></span>
+      <span data-clock>--:--:--</span>
+    </div>
+  </header>
+
+  <footer class="bottombar">
+    <div class="bottombar__hint" data-hint>
+      <i class="ph-bold ph-arrow-up-down"></i> navigate
+      <span class="sep">/</span>
+      <i class="ph-bold ph-key-return"></i> enter
+      <span class="sep">/</span>
+      esc back
+    </div>
+    <div class="bottombar__meta">
+      <span>ISTANBUL</span>
+      <span class="sep">/</span>
+      <span>v1.0</span>
+      <span class="sep">/</span>
+      <span class="signal"><span class="status-dot"></span>ONLINE</span>
+    </div>
+  </footer>
+
+  <!-- ===================== STAGE ===================== -->
+  <main class="stage">
+
+    <!-- ---------- TITLE / MAIN MENU ---------- -->
+    <section id="menu" class="screen menu is-active" aria-label="Main menu">
+      <div class="menu__wordmark" aria-hidden="true">
+        <span class="menu__mu">MU</span><span class="menu__dot">.</span><span class="menu__vex">VEX</span>
+      </div>
+
+      <p class="menu__lede">
+        I build small worlds on the web, in Nix, and in Minecraft.
+        <span class="menu__lede-dim">Pick one and step inside.</span>
+      </p>
+
+      <nav class="menu__list" aria-label="Worlds">
+        <a class="menu__item" href="#studio" data-world="studio">
+          <span class="menu__index">01</span>
+          <span class="menu__name">STUDIO</span>
+          <span class="menu__tag">BLOK. web studio</span>
+          <span class="menu__go"><i class="ph-bold ph-arrow-up-right"></i></span>
+        </a>
+        <a class="menu__item" href="#tooling" data-world="tooling">
+          <span class="menu__index">02</span>
+          <span class="menu__name">TOOLING</span>
+          <span class="menu__tag">open source, built in the open</span>
+          <span class="menu__go"><i class="ph-bold ph-arrow-up-right"></i></span>
+        </a>
+        <a class="menu__item" href="#potato" data-world="potato">
+          <span class="menu__index">03</span>
+          <span class="menu__name">POTATO</span>
+          <span class="menu__tag">@2much_potato, content</span>
+          <span class="menu__go"><i class="ph-bold ph-arrow-up-right"></i></span>
+        </a>
+        <a class="menu__item" href="#log" data-world="log">
+          <span class="menu__index">04</span>
+          <span class="menu__name">LOG</span>
+          <span class="menu__tag">the operator, the fleet</span>
+          <span class="menu__go"><i class="ph-bold ph-arrow-up-right"></i></span>
+        </a>
+        <a class="menu__item" href="#signal" data-world="signal">
+          <span class="menu__index">05</span>
+          <span class="menu__name">SIGNAL</span>
+          <span class="menu__tag">send a message</span>
+          <span class="menu__go"><i class="ph-bold ph-arrow-up-right"></i></span>
+        </a>
+      </nav>
+
+      <div class="menu__foot">
+        <span class="menu__foot-badge"><span class="status-dot"></span> OPEN FOR WORK</span>
+        <span class="menu__foot-note">Musa Murad · Istanbul · 16</span>
+      </div>
+    </section>
+
+    <!-- ---------- 01 STUDIO ---------- -->
+    <section id="studio" class="screen world" data-accent="blok" aria-label="Studio" hidden>
+      <div class="world__scroll">
+        <header class="world__head">
+          <span class="world__index">01</span>
+          <h1 class="world__title">STUDIO</h1>
+          <p class="world__meta">BLOK. · solo web studio · brutalist by choice</p>
+        </header>
+
+        <p class="world__statement">
+          I design and build websites block by BLOK. Sharp edges, real type,
+          nothing wasted. Made for people who thought good design was priced out
+          of reach.
+        </p>
+
+        <div class="world__grid world__grid--split">
+          <div class="world__col">
+            <h2 class="label">What it is</h2>
+            <p class="body">
+              A one-person studio. You talk to me, I draw it, I ship it. No
+              account managers, no lorem ipsum, no template with your logo
+              dropped in. Every layout starts from zero.
+            </p>
+            <a class="cta" href="mailto:musamurad@proton.me?subject=Project%20inquiry">
+              Start a project <i class="ph-bold ph-arrow-up-right"></i>
+            </a>
+          </div>
+          <div class="world__col">
+            <h2 class="label">Selected work</h2>
+            <ul class="rows">
+              <li class="row"><span class="row__num">01</span><span class="row__name">Deniz Masaj</span><span class="row__note">spa &amp; wellness</span></li>
+              <li class="row"><span class="row__num">02</span><span class="row__name">Dora Dondurma</span><span class="row__note">ice cream</span></li>
+              <li class="row"><span class="row__num">03</span><span class="row__name">Hair Istanbul</span><span class="row__note">salon, with dashboard</span></li>
+              <li class="row"><span class="row__num">04</span><span class="row__name">Kiper Pastanesi</span><span class="row__note">patisserie</span></li>
+              <li class="row"><span class="row__num">05</span><span class="row__name">OpenMontage</span><span class="row__note">platform</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="world__cta-strip">
+          <span class="world__cta-text">BLOK. builds sites, block by BLOK.</span>
+          <a class="cta cta--ghost" href="mailto:musamurad@proton.me?subject=Project%20inquiry">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 02 TOOLING ---------- -->
+    <section id="tooling" class="screen world" data-accent="nix" aria-label="Tooling" hidden>
+      <div class="world__scroll">
+        <header class="world__head">
+          <span class="world__index">02</span>
+          <h1 class="world__title">TOOLING</h1>
+          <p class="world__meta">github.com/m-uvex · open source</p>
+        </header>
+
+        <p class="world__statement">
+          I build the tools I want to exist. Mostly NixOS, mostly to make my own
+          machines nicer, then I leave them public so yours can be nicer too.
+        </p>
+
+        <div class="world__grid world__grid--cards">
+          <article class="card">
+            <div class="card__head"><i class="ph-bold ph-planet"></i><span class="card__stars">7</span></div>
+            <h3 class="card__name">OrbitOS</h3>
+            <p class="card__desc">Beginner-friendly, feature-full NixOS configs. Multi-host, multi-purpose, ready to boot.</p>
+            <a class="card__link" href="https://github.com/Orbit-Nix/OrbitOS" target="_blank" rel="noopener">Orbit-Nix/OrbitOS <i class="ph-bold ph-arrow-up-right"></i></a>
+          </article>
+
+          <article class="card">
+            <div class="card__head"><i class="ph-bold ph-waveform"></i><span class="card__stars">7</span></div>
+            <h3 class="card__name">Glyphix</h3>
+            <p class="card__desc">Music visualisation for the Glyph Interface on Nothing phones, plus haptic feedback that lets you feel the track.</p>
+            <a class="card__link" href="https://github.com/oliver-lebaigue-bright-bench/glyphix" target="_blank" rel="noopener">glyphix <i class="ph-bold ph-arrow-up-right"></i></a>
+          </article>
+
+          <article class="card">
+            <div class="card__head"><i class="ph-bold ph-device-mobile-speaker"></i><span class="card__stars">2</span></div>
+            <h3 class="card__name">Phone-Launcher</h3>
+            <p class="card__desc">Stream individual Android apps to your Linux desktop on virtual displays, via scrcpy and ADB.</p>
+            <a class="card__link" href="https://github.com/m-uvex/Phone-Launcher" target="_blank" rel="noopener">m-uvex/Phone-Launcher <i class="ph-bold ph-arrow-up-right"></i></a>
+          </article>
+
+          <article class="card">
+            <div class="card__head"><i class="ph-bold ph-robot"></i></div>
+            <h3 class="card__name">PlutoAI</h3>
+            <p class="card__desc">The little orbiting assistant that runs this hub. Same core everywhere, one instance per person.</p>
+            <a class="card__link" href="https://github.com/m-uvex" target="_blank" rel="noopener">m-uvex <i class="ph-bold ph-arrow-up-right"></i></a>
+          </article>
+        </div>
+
+        <div class="world__cta-strip">
+          <span class="world__cta-text">Everything is on GitHub.</span>
+          <a class="cta cta--ghost" href="https://github.com/m-uvex" target="_blank" rel="noopener">All repositories</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 03 POTATO ---------- -->
+    <section id="potato" class="screen world" data-accent="potato" aria-label="Potato" hidden>
+      <div class="world__scroll">
+        <header class="world__head">
+          <span class="world__index">03</span>
+          <h1 class="world__title">POTATO</h1>
+          <p class="world__meta">@2much_potato · content creator</p>
+        </header>
+
+        <p class="world__statement">
+          I am building a medieval town in Minecraft, one block at a time. You
+          suggest the buildings, I build them. Every couple of days the town
+          grows a little more.
+        </p>
+
+        <div class="world__grid world__grid--split">
+          <div class="world__col">
+            <h2 class="label">The series</h2>
+            <p class="body">
+              Suggestions from the comments become real structures in the town.
+              Taverns, towers, a market square, whatever the viewers ask for
+              next. Season two is underway.
+            </p>
+          </div>
+          <div class="world__col">
+            <h2 class="label">Watch along</h2>
+            <a class="social-btn" href="https://www.youtube.com/@2much_potato" target="_blank" rel="noopener">
+              <i class="ph-bold ph-youtube-logo"></i><span>YouTube</span><i class="ph-bold ph-arrow-up-right social-btn__go"></i>
+            </a>
+            <a class="social-btn" href="https://www.tiktok.com/@2much_potato" target="_blank" rel="noopener">
+              <i class="ph-bold ph-tiktok-logo"></i><span>TikTok</span><i class="ph-bold ph-arrow-up-right social-btn__go"></i>
+            </a>
+            <a class="social-btn" href="https://www.instagram.com/2much_potato" target="_blank" rel="noopener">
+              <i class="ph-bold ph-instagram-logo"></i><span>Instagram</span><i class="ph-bold ph-arrow-up-right social-btn__go"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 04 LOG ---------- -->
+    <section id="log" class="screen world" data-accent="log" aria-label="Log" hidden>
+      <div class="world__scroll">
+        <header class="world__head">
+          <span class="world__index">04</span>
+          <h1 class="world__title">LOG</h1>
+          <p class="world__meta">the operator · read the tape</p>
+        </header>
+
+        <p class="world__statement">
+          16. Istanbul. I fix things, break things, and run Linux on everything
+          that will hold still. The meaning of life is to find your own meaning.
+        </p>
+
+        <div class="world__grid world__grid--split">
+          <div class="world__col">
+            <h2 class="label">Loadout</h2>
+            <ul class="rows rows--dense">
+              <li class="row"><span class="row__name">Stack</span><span class="row__note">HTML · CSS · TS/JS · React · Tailwind · Python · Nix</span></li>
+              <li class="row"><span class="row__name">OS</span><span class="row__note">NixOS · CachyOS · Ubuntu · Android</span></li>
+              <li class="row"><span class="row__name">Desktop</span><span class="row__note">Hyprland · GNOME</span></li>
+              <li class="row"><span class="row__name">Off-key</span><span class="row__note">Skateboarding · self-hosting · tinkering</span></li>
+              <li class="row"><span class="row__name">Playing</span><span class="row__note">Minecraft (modded) · Watch_Dogs 2</span></li>
+            </ul>
+          </div>
+          <div class="world__col">
+            <h2 class="label">The fleet</h2>
+            <ul class="rows rows--dense">
+              <li class="row"><span class="row__name">Orion</span><span class="row__note"> laptop · i5-8265U · MX150 · 24GB</span></li>
+              <li class="row"><span class="row__name">Pulsar</span><span class="row__note"> laptop · i5-3210M · HD 4000 · 8GB</span></li>
+              <li class="row"><span class="row__name">Lunar</span><span class="row__note"> server · i3-4005U · 4GB</span></li>
+              <li class="row"><span class="row__name">Nebula</span><span class="row__note"> phone · Snapdragon 7s · 12GB</span></li>
+              <li class="row"><span class="row__name">Cosmos</span><span class="row__note"> phone · Helio G96 · 8GB</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 05 SIGNAL ---------- -->
+    <section id="signal" class="screen world" data-accent="signal" aria-label="Signal" hidden>
+      <div class="world__scroll">
+        <header class="world__head">
+          <span class="world__index">05</span>
+          <h1 class="world__title">SIGNAL</h1>
+          <p class="world__meta">open channel · any frequency</p>
+        </header>
+
+        <p class="world__statement">
+          Building something, need a site, or just want to say hi. The channel is
+          open. I answer everything.
+        </p>
+
+        <div class="world__grid world__grid--split">
+          <div class="world__col">
+            <a class="signal-mail" href="mailto:musamurad@proton.me">
+              <span class="signal-mail__label">Email</span>
+              <span class="signal-mail__value">musamurad@proton.me</span>
+              <i class="ph-bold ph-arrow-up-right"></i>
+            </a>
+          </div>
+          <div class="world__col">
+            <a class="social-btn" href="https://github.com/m-uvex" target="_blank" rel="noopener">
+              <i class="ph-bold ph-github-logo"></i><span>GitHub</span><i class="ph-bold ph-arrow-up-right social-btn__go"></i>
+            </a>
+            <a class="social-btn" href="https://www.instagram.com/m.uvex" target="_blank" rel="noopener">
+              <i class="ph-bold ph-instagram-logo"></i><span>Instagram</span><i class="ph-bold ph-arrow-up-right social-btn__go"></i>
+            </a>
+            <div class="social-btn social-btn--static" title="Discord">
+              <i class="ph-bold ph-discord-logo"></i><span>Discord</span><span class="social-btn__tag">m_uvex</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== BACK BUTTON ===================== -->
+  <button class="backbtn" data-back hidden>
+    <i class="ph-bold ph-arrow-left"></i> back
+  </button>
+
+  <!-- ===================== VEIL (transition) ===================== -->
+  <div class="veil" data-veil aria-hidden="true">
+    <div class="veil__inner">
+      <span class="veil__index" data-veil-index>01</span>
+      <span class="veil__name" data-veil-name>STUDIO</span>
+      <span class="veil__bar"><span class="veil__bar-fill"></span></span>
+    </div>
+  </div>
+
+  <!-- ===================== BOOT ===================== -->
+  <div class="boot" data-boot aria-hidden="true">
+    <div class="boot__log" data-boot-log></div>
+    <div class="boot__mark">MUVEX<span class="brand-dot">.</span>OS</div>
+    <div class="boot__bar"><span class="boot__bar-fill"></span></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

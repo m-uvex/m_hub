@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtCraft — Controllable AI for Artists</title>
+  <meta name="description" content="ArtCraft builds open source tools for artists. We pride ourselves on freedom of control and expression.">
+  <meta name="theme-color" content="#121316">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================ NAV ============================ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <div class="nav__left">
+        <a class="nav__logo" href="#" aria-label="ArtCraft home">
+          <svg class="logo-mark" viewBox="0 0 116.34 97.5" fill="currentColor" aria-hidden="true">
+            <path d="M104.28,49.49L81.55,0h-31.23l-3.17,4.76L14.75,53.63,0,75.85l21.55,21.55,63.79-36.94,16.99,37.04,14.01-21.74-12.06-26.27ZM32.89,65.66l32.42-48.87,10.91,23.77-43.32,25.09Z"/>
+          </svg>
+          <span class="logo-word">ARTCRAFT</span>
+        </a>
+        <ul class="nav__links">
+          <li><a class="hud-label nav__link nav__link--active" href="#"><span>Home</span></a></li>
+          <li><a class="hud-label nav__link" href="#"><span>Image</span></a></li>
+          <li><a class="hud-label nav__link" href="#"><span>Video</span></a></li>
+          <li><a class="hud-label nav__link" href="#"><span>Resources <i class="ph ph-caret-down"></i></span></a></li>
+          <li><a class="hud-label nav__link" href="#"><span>Download</span></a></li>
+          <li><a class="hud-label nav__link" href="#"><span>Support</span></a></li>
+          <li class="nav__link-sep"><a class="hud-label nav__link" href="#"><span>Craft Apps</span></a></li>
+        </ul>
+      </div>
+      <div class="nav__right">
+        <a class="hud-label nav__link nav__link--desk" href="#"><span>Pricing</span></a>
+        <a class="nav__icon" href="#" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+        <button class="nav__icon invert-block" type="button" data-theme-toggle aria-label="Toggle theme">
+          <i class="ph ph-moon" data-theme-icon></i>
+        </button>
+        <a class="btn btn--primary nav__cta" href="#">Launch App</a>
+        <button class="nav__icon nav__icon--menu invert-block" type="button" data-menu-toggle aria-label="Open main menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div class="mobilemenu" data-mobile-menu hidden>
+    <a class="mobilemenu__link" href="#"><span>Home</span></a>
+    <a class="mobilemenu__link" href="#"><span>Image</span></a>
+    <a class="mobilemenu__link" href="#"><span>Video</span></a>
+    <a class="mobilemenu__link" href="#"><span>Resources</span></a>
+    <a class="mobilemenu__link" href="#"><span>Download</span></a>
+    <a class="mobilemenu__link" href="#"><span>Support</span></a>
+    <a class="mobilemenu__link" href="#"><span>Craft Apps</span></a>
+    <a class="mobilemenu__link" href="#"><span>Pricing</span></a>
+    <a class="btn btn--primary mobilemenu__cta" href="#">Launch App</a>
+  </div>
+
+  <main>
+
+    <!-- ============================ HERO ============================ -->
+    <section id="hero" class="hero">
+      <div class="hero__viewport">
+        <div class="hero__bg" aria-hidden="true"></div>
+
+        <div class="hero__content">
+          <div class="hero__group" data-reveal-group>
+            <div class="wordmark-glow" aria-hidden="true"></div>
+
+            <div class="hero__mark-wrap">
+              <div class="wordmark-glass" aria-hidden="true"></div>
+              <div class="wordmark" role="img" aria-label="ARTCRAFT">
+                <span class="wm-letter wm-letter--mark"><svg viewBox="0 0 116.34 97.5" fill="currentColor" aria-hidden="true"><path d="M104.28,49.49L81.55,0h-31.23l-3.17,4.76L14.75,53.63,0,75.85l21.55,21.55,63.79-36.94,16.99,37.04,14.01-21.74-12.06-26.27ZM32.89,65.66l32.42-48.87,10.91,23.77-43.32,25.09Z"/></svg></span>
+                <span class="wm-letter">R</span>
+                <span class="wm-letter">T</span>
+                <span class="wm-letter">C</span>
+                <span class="wm-letter">R</span>
+                <span class="wm-letter">A</span>
+                <span class="wm-letter">F</span>
+                <span class="wm-letter">T</span>
+              </div>
+            </div>
+
+            <h1 class="hero__title" data-choreo-item>
+              Capable tools
+              <span class="serif-italic">for artists.</span>
+            </h1>
+
+            <p class="hero__lede" data-choreo-item>
+              ArtCraft builds open source tools for artists. We pride ourselves on freedom of control and expression.
+            </p>
+
+            <div class="hero__ctas" data-choreo-item>
+              <a class="btn btn--primary" href="#download">
+                <i class="ph ph-apple-logo"></i><i class="ph ph-monitor"></i>
+                Download free
+              </a>
+              <a class="btn btn--ghost" href="#">Use on web</a>
+            </div>
+
+            <div class="hero__meta" data-choreo-item>
+              <a class="hud-label hero__gh" href="#"><i class="ph ph-github-logo"></i> Open source on GitHub</a>
+              <p class="hud-label">macOS · Windows · Web</p>
+              <p class="hud-label">No subscription required</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ MARQUEE ============================ -->
+    <div class="marquee" aria-hidden="true">
+      <ul class="marquee__track">
+        <li class="hud-label"><span class="marquee__dot">▪</span>Seedance 2.5</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Nano Banana 2</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Image to Location</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>3D Compositing</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Character Posing</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Image to 3D Mesh</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Background Removal</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>2D Compositing</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Mixed Assets</li>
+      </ul>
+      <ul class="marquee__track">
+        <li class="hud-label"><span class="marquee__dot">▪</span>Seedance 2.5</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Nano Banana 2</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Image to Location</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>3D Compositing</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Character Posing</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Image to 3D Mesh</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Background Removal</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>2D Compositing</li>
+        <li class="hud-label"><span class="marquee__dot">▪</span>Mixed Assets</li>
+      </ul>
+    </div>
+
+    <!-- ============================ FEATURES ============================ -->
+    <section id="features" class="section" data-choreo>
+      <div class="frame">
+        <span class="tick tick--half tick--tl" aria-hidden="true"></span>
+        <span class="tick tick--half tick--tr" aria-hidden="true"></span>
+
+        <div class="section__subhead">
+          <div class="section__subhead-inner">
+            <p class="hud-label"><span class="faint">01</span><span class="section__slash">/</span>Crafting features</p>
+            <p class="hud-label section__subhead-note">Real footage — captured in ArtCraft</p>
+          </div>
+        </div>
+
+        <div class="section__intro">
+          <h2 class="section__title">
+            The control that mere <span class="serif-italic">words</span> cannot buy.
+          </h2>
+          <p class="section__desc">
+            Text prompting is neat, but artists crave control. Compose the shot yourself — then let the model render it.
+          </p>
+        </div>
+
+        <div class="grid grid--2">
+          <article class="card" data-reveal>
+            <div class="card__top"><p class="hud-label">Worlds</p><p class="hud-label faint">01</p></div>
+            <div class="media"><div class="media__placeholder"><span class="hud-label faint">Media placeholder</span></div></div>
+            <div class="card__body"><h3 class="card__title">Image to Location</h3><p class="card__desc">Place virtual actors into physical environments. Establish single-location consistency and film multiple shots in a room without things disappearing.</p></div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card__top"><p class="hud-label">3D Compositing</p><p class="hud-label faint">02</p></div>
+            <div class="media"><div class="media__placeholder"><span class="hud-label faint">Media placeholder</span></div></div>
+            <div class="card__body"><h3 class="card__title">Build scenes with depth</h3><p class="card__desc">Use images, backdrops, foreground elements, and props in scenes with real depth. A couple of images blends naturally into a finished composition.</p></div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card__top"><p class="hud-label">2D Compositing</p><p class="hud-label faint">03</p></div>
+            <div class="media"><div class="media__placeholder"><span class="hud-label faint">Media placeholder</span></div></div>
+            <div class="card__body"><h3 class="card__title">Precise layered control</h3><p class="card__desc">Combine images, background removal, layers, and simple drawing tools to compose a scene exactly the way you imagined it.</p></div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card__top"><p class="hud-label">3D Mesh</p><p class="hud-label faint">04</p></div>
+            <div class="media"><div class="media__placeholder"><span class="hud-label faint">Media placeholder</span></div></div>
+            <div class="card__body"><h3 class="card__title">Image to 3D Mesh</h3><p class="card__desc">Turning images into 3D helps position elements exactingly. Block complex scenes with intentional geometry instead of fighting prompts.</p></div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card__top"><p class="hud-label">Mixed Assets</p><p class="hud-label faint">05</p></div>
+            <div class="media"><div class="media__placeholder"><span class="hud-label faint">Media placeholder</span></div></div>
+            <div class="card__body"><h3 class="card__title">Mix every kind of asset</h3><p class="card__desc">Combine image cutouts, worlds, and 3D meshes in one canvas to lay out scenes with precision and intention.</p></div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card__top"><p class="hud-label">Posing</p><p class="hud-label faint">06</p></div>
+            <div class="media"><div class="media__placeholder"><span class="hud-label faint">Media placeholder</span></div></div>
+            <div class="card__body"><h3 class="card__title">Character Posing</h3><p class="card__desc">Dynamically pose your characters to nail the precise character, scene, and camera blocking before calling "action".</p></div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card__top"><p class="hud-label">Cutouts</p><p class="hud-label faint">07</p></div>
+            <div class="media"><div class="media__placeholder"><span class="hud-label faint">Media placeholder</span></div></div>
+            <div class="card__body"><h3 class="card__title">Background Removal</h3><p class="card__desc">Instantly remove backgrounds from images to create assets for your scenes. Clean, precise, and ready for compositing.</p></div>
+          </article>
+          <a class="card card--link" href="#" data-reveal>
+            <div class="card__top"><p class="hud-label">More in the app</p><p class="hud-label faint">08</p></div>
+            <div class="media media--cta">
+              <span class="media__arrow"><i class="ph ph-arrow-up-right"></i></span>
+              <p class="hud-label faint">app.getartcraft.com</p>
+              <span class="tick tick--tl2" aria-hidden="true"></span>
+              <span class="tick tick--br2" aria-hidden="true"></span>
+            </div>
+            <div class="card__body"><h3 class="card__title">Launch the studio</h3><p class="card__desc">Generate, edit, and compose with every model — right in your browser, no install needed.</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ OWNERSHIP ============================ -->
+    <section id="ownership" class="section" data-choreo>
+      <div class="frame">
+        <span class="tick tick--half tick--tl" aria-hidden="true"></span>
+        <span class="tick tick--half tick--tr" aria-hidden="true"></span>
+
+        <div class="section__subhead">
+          <div class="section__subhead-inner">
+            <p class="hud-label"><span class="faint">02</span><span class="section__slash">/</span>Ownership</p>
+            <p class="hud-label section__subhead-note">Free &amp; open source</p>
+          </div>
+        </div>
+
+        <div class="section__intro">
+          <h2 class="section__title">Stop <span class="serif-italic">renting</span> from websites.</h2>
+          <p class="section__desc">ArtCraft is yours to own and keep, forever. No subscriptions needed, no aggregator middleman, no rent payments.</p>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="padcard" data-reveal>
+            <p class="hud-label faint">A</p>
+            <h3 class="padcard__title">Open source</h3>
+            <p class="padcard__desc">The whole studio is on GitHub. Read it, fork it, make it yours.</p>
+            <a class="btn btn--ghost btn--sm" href="#"><i class="ph ph-github-logo"></i> View source</a>
+          </article>
+          <article class="padcard" data-reveal>
+            <p class="hud-label faint">B</p>
+            <h3 class="padcard__title">Yours forever</h3>
+            <p class="padcard__desc">ArtCraft is yours to own and keep, forever. No rent payments.</p>
+          </article>
+          <article class="padcard" data-reveal>
+            <p class="hud-label faint">C</p>
+            <h3 class="padcard__title">No middleman</h3>
+            <p class="padcard__desc">No aggregator between you and the models. Your work stays yours.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PROOF ============================ -->
+    <section id="made-with" class="section" data-choreo>
+      <div class="frame">
+        <span class="tick tick--half tick--tl" aria-hidden="true"></span>
+        <span class="tick tick--half tick--tr" aria-hidden="true"></span>
+
+        <div class="section__subhead">
+          <div class="section__subhead-inner">
+            <p class="hud-label"><span class="faint">03</span><span class="section__slash">/</span>Proof</p>
+            <p class="hud-label section__subhead-note">From the community</p>
+          </div>
+        </div>
+
+        <div class="section__intro">
+          <h2 class="section__title">Made <span class="serif-italic">with</span> ArtCraft.</h2>
+        </div>
+
+        <div class="grid grid--3">
+          <figure class="card" data-reveal>
+            <div class="card__top"><figcaption class="hud-label">Community film</figcaption><p class="hud-label faint">01</p></div>
+            <div class="media">
+              <button class="proof" type="button">
+                <img class="proof__img" src="https://i.ytimg.com/vi/HDdsKJl92H4/hqdefault.jpg" alt="Community film 01">
+                <span class="proof__scrim"></span>
+                <span class="hud-label proof__badge"><i class="ph ph-play"></i> Play</span>
+              </button>
+            </div>
+          </figure>
+          <figure class="card" data-reveal>
+            <div class="card__top"><figcaption class="hud-label">Community film</figcaption><p class="hud-label faint">02</p></div>
+            <div class="media">
+              <button class="proof" type="button">
+                <img class="proof__img" src="https://i.ytimg.com/vi/oqoCWdOwr2U/hqdefault.jpg" alt="Community film 02">
+                <span class="proof__scrim"></span>
+                <span class="hud-label proof__badge"><i class="ph ph-play"></i> Play</span>
+              </button>
+            </div>
+          </figure>
+          <figure class="card" data-reveal>
+            <div class="card__top"><figcaption class="hud-label">Community film</figcaption><p class="hud-label faint">03</p></div>
+            <div class="media">
+              <button class="proof" type="button">
+                <img class="proof__img" src="https://i.ytimg.com/vi/H4NFXGMuwpY/hqdefault.jpg" alt="Community film 03">
+                <span class="proof__scrim"></span>
+                <span class="hud-label proof__badge"><i class="ph ph-play"></i> Play</span>
+              </button>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ START ============================ -->
+    <section id="start" class="section" data-choreo>
+      <div class="frame">
+        <span class="tick tick--half tick--tl" aria-hidden="true"></span>
+        <span class="tick tick--half tick--tr" aria-hidden="true"></span>
+
+        <div class="start">
+          <p class="hud-label faint">Free to start · No subscription</p>
+          <h2 class="start__title">Start <span class="serif-italic">crafting</span>.</h2>
+          <p class="start__desc">Download the studio, or run it in your browser. Your first renders are minutes away.</p>
+          <div class="start__ctas">
+            <a class="btn btn--primary" href="#"><i class="ph ph-download-simple"></i> Download for desktop</a>
+            <a class="btn btn--ghost" href="#">Launch in browser</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="frame">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <svg class="logo-mark" viewBox="0 0 116.34 97.5" fill="currentColor" aria-hidden="true"><path d="M104.28,49.49L81.55,0h-31.23l-3.17,4.76L14.75,53.63,0,75.85l21.55,21.55,63.79-36.94,16.99,37.04,14.01-21.74-12.06-26.27ZM32.89,65.66l32.42-48.87,10.91,23.77-43.32,25.09Z"/></svg>
+            <span class="logo-word">ARTCRAFT</span>
+          </div>
+          <p class="footer__tag">The open-source studio for controllable AI image and video.</p>
+          <a class="hud-label footer__mail" href="mailto:hello@storyteller.ai">hello@storyteller.ai</a>
+        </div>
+        <nav class="footer__col">
+          <p class="hud-label faint">Product</p>
+          <ul><li><a href="#">Download</a></li><li><a href="#">Pricing</a></li><li><a href="#">Launch App</a></li></ul>
+        </nav>
+        <nav class="footer__col">
+          <p class="hud-label faint">Craft Apps</p>
+          <ul><li><a href="#">All Craft Apps</a></li><li><a href="#">PhotoCraft</a></li><li><a href="#">VectorCraft</a></li><li><a href="#">FilmCraft</a></li><li><a href="#">LightCraft</a></li><li><a href="#">PdfCraft</a></li><li><a href="#">EffectCraft</a></li><li><a href="#">DesignCraft</a></li></ul>
+        </nav>
+        <nav class="footer__col">
+          <p class="hud-label faint">Resources</p>
+          <ul><li><a href="#">Tutorials</a></li><li><a href="#">News</a></li><li><a href="#">FAQ</a></li><li><a href="#">Press Kit</a></li><li><a href="#">Support</a></li></ul>
+        </nav>
+        <nav class="footer__col">
+          <p class="hud-label faint">Community</p>
+          <ul><li><a href="#">Discord</a></li><li><a href="#">GitHub</a></li><li><a href="#">YouTube</a></li><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li></ul>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p class="hud-label">© 2026 ArtCraft</p>
+        <p class="hud-label">Made by artists, for artists</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

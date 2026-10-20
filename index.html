@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>m_uvex // stranger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="vendor/phosphor/regular.css">
+  <link rel="stylesheet" type="text/css" href="vendor/phosphor/fill.css">
+  <link rel="stylesheet" type="text/css" href="vendor/phosphor/bold.css">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas class="grid-bg" id="gridBg"></canvas>
+
+  <div class="world" id="world">
+    <!-- Everything inside world moves in 2D space -->
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="ph ph-list"></i>
+        <span class="sidebar-title">PROJECTS</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="https://loaf.muvex.dev" target="_blank" rel="noreferrer noopener" class="nav-item">
+          <i class="ph ph-bread"></i>
+          <span class="nav-label">Loaf</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="ph ph-planet"></i>
+          <span class="nav-label">OrbitOS</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="ph ph-shapes"></i>
+          <span class="nav-label">Glyphix</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="ph ph-device-mobile"></i>
+          <span class="nav-label">Phone-Launcher</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="ph ph-terminal"></i>
+          <span class="nav-label">orbit-config</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="https://github.com/m-uvex" target="_blank" class="nav-item">
+          <i class="ph ph-github-logo"></i>
+          <span class="nav-label">m-uvex</span>
+        </a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <h1 class="hero">
+        <div class="line" id="heroLine1">
+          <div class="word">
+            <span class="char">H</span><span class="char">e</span><span class="char">l</span><span class="char">l</span><span class="char">o</span>
+          </div>
+        </div>
+        <div class="line" id="heroLine2">
+          <div class="word">
+            <span class="char">s</span><span class="char">t</span><span class="char">r</span><span class="char">a</span><span class="char">n</span><span class="char">g</span><span class="char">e</span><span class="char">r</span><span class="char">,</span>
+          </div>
+        </div>
+        <div class="line">
+          <div class="word">
+            <span class="char">I</span><span class="char">m</span>
+          </div>
+          <div class="word accent">
+            <span class="char">m</span><span class="char">_</span><span class="char">u</span><span class="char">v</span><span class="char">e</span><span class="char">x</span>
+          </div>
+        </div>
+      </h1>
+    </main>
+
+    <!-- Terminal & About Node (Phase 1 Waypoint: 150vw, 150vh) -->
+    <section class="node-terminal" style="left: 150vw; top: 150vh; transform: translate(-50%, -50%);">
+      
+      <!-- Terminal UI (Disappears on Execution) -->
+      <div class="term-window" id="termWindow">
+        <div class="term-line">
+          <span class="prompt">guest@orbitos:~$</span>
+          <span id="typedCommand"></span><span id="termCursor" class="cursor">_</span>
+        </div>
+        <div id="termHint" class="term-hint">Press [ENTER] or click to execute</div>
+      </div>
+
+      <!-- About Me Bento (Revealed on Execution) -->
+      <div class="about-bento" id="aboutBento">
+        <div class="bento-box b-name identity-box" id="identityTrigger">
+          <span class="hud-label">Identity</span>
+          <div class="identity-title-row">
+            <h3>m_uvex</h3>
+            <i class="ph ph-arrow-up-right identity-icon"></i>
+          </div>
+        </div>
+
+        <div class="bento-box b-shape accent-bg" id="shapeBox">
+          <div class="shape-spinner">
+            <i class="ph-fill ph-asterisk" id="dynamicShape"></i>
+          </div>
+        </div>
+
+        <div class="bento-box b-roles">
+          <span class="hud-label">Role</span>
+          <ul class="role-list">
+            <li>CREATOR</li>
+            <li>DESIGNER</li>
+            <li>DEVELOPER</li>
+          </ul>
+        </div>
+
+        <div class="bento-box b-hero">
+          <h2>CRAFTING <span class="serif-italic">software</span><br>THAT FEELS <span class="accent">ALIVE.</span></h2>
+        </div>
+
+        <div class="bento-box b-focus">
+          <span class="hud-label">Status</span>
+          <h4>Building OrbitOS and Glyphix, studying electrical engineering, clauding.</h4>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Projects Node (Phase 2 Waypoint: 50vw, 250vh - vertically aligned with Hero) -->
+    <section class="node-projects" style="left: 50vw; top: 250vh; transform: translate(-50%, -50%);">
+      <div class="projects-bento">
+        <div class="projects-header">
+          <h2 class="projects-title">SELECTED <span class="serif-italic accent">works.</span></h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Loaf (Latest Project, redirects to loaf.muvex.dev) -->
+          <a href="https://loaf.muvex.dev" target="_blank" rel="noreferrer noopener" class="bento-box b-project b-proj-loaf">
+            <i class="ph-fill ph-bread card-bg-icon"></i>
+            <div class="proj-top">
+              <i class="ph ph-bread"></i>
+              <span class="proj-link"><i class="ph ph-arrow-up-right"></i></span>
+            </div>
+            <div class="proj-bottom">
+              <h3>Loaf</h3>
+              <p>A beautiful and fast Rust & QML file manager for Linux.</p>
+            </div>
+          </a>
+
+          <!-- Blok. WebDev -->
+          <div class="bento-box b-project b-proj-blok">
+            <i class="ph-fill ph-bounding-box card-bg-icon"></i>
+            <div class="proj-top">
+              <i class="ph ph-bounding-box"></i>
+              <a href="#"><i class="ph ph-arrow-up-right"></i></a>
+            </div>
+            <div class="proj-bottom">
+              <h3>Blok. WebDev</h3>
+              <p>A web design studio.</p>
+            </div>
+          </div>
+
+          <!-- OrbitOS -->
+          <div class="bento-box b-project b-proj-orbitos orbitos-card">
+            <i class="ph-fill ph-planet card-bg-icon orbit-bg"></i>
+            <div class="proj-top">
+              <i class="ph ph-planet"></i>
+              <a href="#"><i class="ph ph-arrow-up-right"></i></a>
+            </div>
+            <div class="proj-bottom">
+              <h3>OrbitOS</h3>
+              <p>NixOS made simple, made in orbit.</p>
+            </div>
+          </div>
+
+          <!-- Glyphix -->
+          <div class="bento-box b-project b-proj-glyphix">
+            <i class="ph-fill ph-shapes card-bg-icon"></i>
+            <div class="proj-top">
+              <i class="ph ph-shapes"></i>
+              <a href="#"><i class="ph ph-arrow-up-right"></i></a>
+            </div>
+            <div class="proj-bottom">
+              <h3>Glyphix</h3>
+              <p>Better glyph music viz for Nothing phones</p>
+            </div>
+          </div>
+
+          <!-- @2much_potato -->
+          <div class="bento-box b-project b-proj-potato potato-card">
+            <i class="ph-fill ph-game-controller card-bg-icon"></i>
+            <div class="potato-main">
+              <div class="proj-top">
+                <i class="ph ph-game-controller"></i>
+              </div>
+              <div class="proj-bottom">
+                <h3>@2much_potato</h3>
+                <p>Minecraft content across platforms</p>
+              </div>
+            </div>
+            <div class="potato-strip">
+              <a href="https://youtube.com/@2much_potato" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+              <a href="https://instagram.com/2much_potato" target="_blank" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+              <a href="https://tiktok.com/@2much_potato" target="_blank" aria-label="TikTok"><i class="ph-fill ph-tiktok-logo"></i></a>
+            </div>
+          </div>
+
+          <!-- More on GitHub (Full width, short) -->
+          <a href="https://github.com/m-uvex" target="_blank" rel="noreferrer noopener" class="bento-box b-project b-proj-github">
+            <i class="ph-fill ph-github-logo card-bg-icon github-bg"></i>
+            <div class="github-main">
+              <i class="ph ph-github-logo github-icon"></i>
+              <div class="github-text">
+                <h3>More on GitHub</h3>
+                <p>Public repositories, dotfiles, and open source experiments.</p>
+              </div>
+            </div>
+            <div class="github-arrow">
+              <i class="ph ph-arrow-up-right"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alternate Branch: Musa (Behind the Handle) -->
+    <section class="node-alt-branch" id="altPathNode" style="left: 280vw; top: 60vh; transform: translate(-50%, -50%);">
+      <div class="alt-container">
+        <div class="alt-top-bar">
+          <button type="button" class="alt-return-btn" id="altReturnBtn">
+            <i class="ph ph-arrow-left"></i>
+            <span>RETURN</span>
+            <span class="btn-kbd">ESC</span>
+          </button>
+        </div>
+
+        <div class="node-box alt-card">
+          <i class="ph ph-planet"></i>
+          <span>COMING SOON</span>
+        </div>
+
+        <div class="alt-cards-grid" style="display: none;">
+          <!-- Card 1: Who I Am -->
+          <div class="bento-box alt-card">
+            <div class="alt-card-header">
+              <span class="alt-card-num">01</span>
+              <h3>Who I am</h3>
+            </div>
+            <div class="alt-card-body">
+              <div class="alt-name-tag">
+                <h4>Musa</h4>
+                <span>16 // Palestine & Europe</span>
+              </div>
+              <p>
+                Sixteen, living in Istanbul, managing home responsibilities early as the only grown child. Not planning on university or climbing the standard corporate conveyor belt.
+              </p>
+              <p>
+                Outside of code: skateboarding, late night walks, quiet solitude, music, and building medieval towns on Minecraft.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: How I Think -->
+          <div class="bento-box alt-card">
+            <div class="alt-card-header">
+              <span class="alt-card-num">02</span>
+              <h3>How I think</h3>
+            </div>
+            <div class="alt-card-body">
+              <p>
+                Autonomy by necessity, not aesthetics. I build to protect my family, stay independent, and own my time completely.
+              </p>
+              <p>
+                Fitting in is the lamest thing someone can do. In work and in identity: nothing repeated, nothing made before.
+              </p>
+              <div class="alt-quote-callout">
+                <span class="alt-quote-text">“Good is when something is different.”</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Reach Out -->
+          <div class="bento-box alt-card">
+            <div class="alt-card-header">
+              <span class="alt-card-num">03</span>
+              <h3>Reach out</h3>
+            </div>
+            <div class="alt-card-body">
+              <p class="alt-reach-intro">Direct line to the human behind the screen. No pitches, just normal conversation.</p>
+              <ul class="alt-contact-list">
+                <li>
+                  <span class="contact-label">Discord</span>
+                  <span class="contact-val">m_uvex</span>
+                </li>
+                <li>
+                  <span class="contact-label">Signal</span>
+                  <span class="contact-val">m_uvex.01</span>
+                </li>
+                <li>
+                  <span class="contact-label">Instagram</span>
+                  <a href="https://instagram.com/m.uvex" target="_blank" rel="noreferrer noopener" class="contact-link">
+                    @m.uvex <i class="ph ph-arrow-up-right"></i>
+                  </a>
+                </li>
+                <li>
+                  <span class="contact-label">GitHub</span>
+                  <a href="https://github.com/m-uvex" target="_blank" rel="noreferrer noopener" class="contact-link">
+                    m-uvex <i class="ph ph-arrow-up-right"></i>
+                  </a>
+                </li>
+                <li>
+                  <span class="contact-label">Email</span>
+                  <a href="mailto:hi@muvex.dev" class="contact-link">
+                    hi@muvex.dev <i class="ph ph-arrow-up-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other Stuff Node (Phase 3 Waypoint: 200vw, 275vh) -->
+    <section class="node-core" style="left: 200vw; top: 275vh; transform: translate(-50%, -50%);">
+      <div class="node-box">
+        <i class="ph ph-planet"></i>
+        <span>COMING SOON</span>
+      </div>
+    </section>
+
+  </div> <!-- End world -->
+
+  <div class="scroll-track"></div>
+
+  <div class="hero-scroll-cue" id="heroScrollCue">
+    <div class="cue-track">
+      <div class="cue-signal"></div>
+    </div>
+    <div class="cue-meta">
+      <span class="cue-label">scroll to explore</span>
+      <span class="cue-coords">[ 01 ]</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
