@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Happy Birthday Betül! 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>İyi ki Doğdun Betül!</title>
+  
+  <!-- Font Preconnections & Preload to Eliminate Font Flash (FOUT) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Shantell+Sans:ital,wght@0,700;0,800;1,700;1,800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Shantell+Sans:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  
   <style>
     :root {
-      --bg-dark: #0d0b18;
-      --card-bg: rgba(255, 255, 255, 0.94);
-      --accent-pink: #ff6b8b;
-      --accent-purple: #9c65f9;
-      --accent-gold: #ffbe3d;
-      --accent-teal: #4ecdc4;
-      --text-main: #2d1840;
+      --bg: #FFFDF0;
+      --ink: #18181B;
+      --pink: #FF2E63;
+      --yellow: #FFD124;
+      --cream: #FFF5DD;
+      --cake-sponge: #F8E4B8;
     }
 
     * {
@@ -27,21 +31,53 @@
       user-select: none;
     }
 
+    /* Zero font flash */
+    html {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      height: 100%;
+    }
+
+    html.fonts-loaded {
+      visibility: visible;
+      opacity: 1;
+    }
+
     body {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Shantell Sans', cursive, sans-serif;
       min-height: 100vh;
-      background: radial-gradient(circle at 50% 20%, #291b42 0%, #150f24 50%, #090710 100%);
-      color: #fff;
+      min-height: 100dvh; /* Perfect dynamic mobile viewport height */
+      background-color: var(--bg);
+      color: var(--ink);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       position: relative;
+      touch-action: manipulation;
     }
 
-    /* Ambient background glow & stars */
-    .bg-blobs {
+    /* GPU-accelerated background layer for 60-120fps smooth performance */
+    .bg-grid {
+      position: absolute;
+      inset: -52px;
+      background-image: radial-gradient(var(--ink) 1.2px, transparent 1.2px);
+      background-size: 26px 26px;
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+      animation: hardwareGridDrift 20s linear infinite;
+    }
+
+    @keyframes hardwareGridDrift {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(52px, 52px, 0); }
+    }
+
+    /* Ambient Floating Doodles */
+    .doodle-bg {
       position: absolute;
       inset: 0;
       pointer-events: none;
@@ -49,229 +85,146 @@
       z-index: 0;
     }
 
-    .blob {
+    .doodle-item {
       position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.35;
-      animation: floatBlob 10s ease-in-out infinite alternate;
+      opacity: 0.16;
+      stroke: var(--ink);
+      stroke-width: 3;
+      stroke-linecap: round;
+      fill: none;
+      will-change: transform;
+      animation: doodleFloat 6s ease-in-out infinite alternate;
     }
 
-    .blob-1 {
-      width: 380px;
-      height: 380px;
-      background: #ff528a;
-      top: -100px;
-      left: 10%;
+    .doodle-1 { top: 8%; left: 7%; width: 42px; height: 42px; animation-duration: 5s; }
+    .doodle-2 { top: 14%; right: 8%; width: 56px; height: 28px; animation-duration: 6.5s; animation-delay: -1.5s; }
+    .doodle-3 { bottom: 12%; left: 8%; width: 44px; height: 44px; animation-duration: 5.8s; animation-delay: -3s; }
+    .doodle-4 { bottom: 10%; right: 8%; width: 42px; height: 42px; animation-duration: 7s; animation-delay: -1s; }
+    .doodle-5 { top: 46%; left: 4%; width: 32px; height: 32px; animation-duration: 4.8s; }
+    .doodle-6 { top: 50%; right: 5%; width: 36px; height: 36px; animation-duration: 6.2s; }
+
+    @keyframes doodleFloat {
+      0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(0, -14px, 0) rotate(7deg); }
+      100% { transform: translate3d(0, 8px, 0) rotate(-6deg); }
     }
 
-    .blob-2 {
-      width: 420px;
-      height: 420px;
-      background: #7943ea;
-      bottom: -100px;
-      right: 10%;
-      animation-delay: -5s;
-    }
-
-    .blob-3 {
-      width: 250px;
-      height: 250px;
-      background: #ffbe3d;
-      top: 40%;
-      left: 60%;
-      opacity: 0.2;
-      animation-duration: 8s;
-    }
-
-    @keyframes floatBlob {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, 30px) scale(1.15); }
-    }
-
-    /* Scene Container */
-    #app {
+    #stage {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 580px;
-      min-height: 580px;
+      max-width: 480px;
+      min-height: 520px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 16px;
       text-align: center;
     }
 
-    /* --- PHASE 1: Gate / Intro --- */
+    .comic-btn {
+      font-family: 'Shantell Sans', cursive, sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      background: var(--yellow);
+      color: var(--ink);
+      border: 3.5px solid var(--ink);
+      border-radius: 18px;
+      padding: 14px 34px;
+      box-shadow: 5px 5px 0px var(--ink);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+      touch-action: manipulation;
+    }
+
+    .comic-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px var(--ink);
+    }
+
+    .comic-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0px var(--ink);
+    }
+
+    /* --- PHASE 1: Gate --- */
     #gateScreen {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      gap: 22px;
+      width: 100%;
     }
 
-    .gate-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      font-size: 13px;
-      font-weight: 500;
-      color: #ffcce0;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .gate-title {
-      font-size: 38px;
-      font-weight: 800;
-      line-height: 1.15;
-      background: linear-gradient(135deg, #ffffff 30%, #ff8db3 70%, #d896ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-top: 4px;
-    }
-
-    .gate-subtitle {
-      color: rgba(255, 255, 255, 0.65);
+    .title-badge {
+      display: inline-block;
+      background: var(--pink);
+      color: #FFFFFF;
+      padding: 8px 24px;
+      border: 3.5px solid var(--ink);
+      border-radius: 16px;
+      box-shadow: 5px 5px 0px var(--ink);
       font-size: 16px;
-      max-width: 320px;
+      font-weight: 800;
+      transform: rotate(-3deg);
     }
 
-    .start-btn {
-      margin-top: 14px;
-      padding: 16px 36px;
-      font-size: 18px;
-      font-weight: 700;
-      font-family: inherit;
-      color: #fff;
-      background: linear-gradient(135deg, #ff5b88, #9747ff);
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(235, 78, 140, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .start-btn:hover {
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 14px 30px rgba(235, 78, 140, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-    }
-
-    .start-btn:active {
-      transform: translateY(1px) scale(0.98);
+    .main-title {
+      font-size: clamp(38px, 11vw, 50px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--ink);
+      text-shadow: 3px 3px 0px var(--yellow);
+      transform: rotate(1deg);
     }
 
     /* --- PHASE 2: Countdown --- */
     #countdownScreen {
       display: none;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 360px;
     }
 
-    .countdown-number {
-      font-size: 130px;
-      font-weight: 900;
+    .comic-countdown {
+      font-size: clamp(120px, 35vw, 160px);
+      font-weight: 800;
       line-height: 1;
-      background: linear-gradient(180deg, #ffffff 40%, #ff7eb3 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 45px rgba(255, 105, 180, 0.7));
-      animation: countPulse 0.95s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+      color: var(--pink);
+      -webkit-text-stroke: 4.5px var(--ink);
+      text-shadow: 8px 8px 0px var(--ink);
+      animation: doodleWiggle 0.85s infinite cubic-bezier(0.36, 0.07, 0.19, 0.97);
     }
 
-    .countdown-label {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.75);
-      margin-top: 10px;
+    @keyframes doodleWiggle {
+      0% { transform: scale(0.6) rotate(-8deg); }
+      50% { transform: scale(1.15) rotate(6deg); }
+      75% { transform: scale(1.05) rotate(-3deg); }
+      100% { transform: scale(1) rotate(0deg); }
     }
 
-    @keyframes countPulse {
-      0% { transform: scale(0.3) rotate(-6deg); opacity: 0; }
-      50% { transform: scale(1.1) rotate(2deg); opacity: 1; }
-      100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
-    }
-
-    /* --- PHASE 3: Cake Section --- */
+    /* --- PHASE 3: Cylindrical Cake --- */
     #cakeScreen {
       display: none;
       flex-direction: column;
       align-items: center;
-      animation: dropCake 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    .instruction-badge {
-      font-size: 15px;
-      font-weight: 600;
-      color: #ffe6aa;
-      background: rgba(255, 190, 61, 0.15);
-      border: 1px solid rgba(255, 190, 61, 0.35);
-      padding: 8px 20px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-      animation: gentlePulse 2s infinite ease-in-out;
-      box-shadow: 0 4px 20px rgba(255, 190, 61, 0.2);
-    }
-
-    .instruction-badge span {
-      display: inline-block;
-      animation: bounceWiggle 1.5s infinite;
-    }
-
-    @keyframes gentlePulse {
-      0%, 100% { opacity: 0.9; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.04); }
-    }
-
-    @keyframes bounceWiggle {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px) rotate(5deg); }
-    }
-
-    .cake-container {
+      animation: cakeLand 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
       position: relative;
-      cursor: pointer;
-      width: 260px;
-      height: 250px;
-      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
+      width: 100%;
     }
 
-    .cake-container:hover {
-      transform: scale(1.06);
-    }
-
-    .cake-container:active {
-      transform: scale(0.96);
-    }
-
-    @keyframes dropCake {
+    @keyframes cakeLand {
       0% {
         opacity: 0;
-        transform: translateY(-500px) scale(0.7);
+        transform: translateY(-380px) scale(0.85);
       }
       70% {
-        transform: translateY(20px) scale(1.05, 0.95);
+        transform: translateY(15px) scale(1.1, 0.9);
       }
       85% {
-        transform: translateY(-8px) scale(0.98, 1.02);
+        transform: translateY(-8px) scale(0.96, 1.04);
       }
       100% {
         opacity: 1;
@@ -279,411 +232,422 @@
       }
     }
 
-    /* Stylized SVG Cake Graphics */
-    .cake-svg {
-      width: 250px;
-      height: 240px;
-      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 25px rgba(255, 107, 139, 0.3));
+    .prompt-bubble {
+      background: #FFFFFF;
+      border: 3.5px solid var(--ink);
+      box-shadow: 4px 4px 0px var(--ink);
+      border-radius: 999px;
+      padding: 9px 24px;
+      font-size: clamp(15px, 4.2vw, 17px);
+      font-weight: 800;
+      margin-bottom: 22px;
+      position: relative;
+      animation: floatPrompt 2s infinite ease-in-out;
     }
 
-    .flame {
+    @keyframes floatPrompt {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-5px) rotate(1.5deg); }
+    }
+
+    .cake-container {
+      cursor: pointer;
+      position: relative;
       transform-origin: center bottom;
-      animation: flicker 0.6s infinite alternate ease-in-out;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: transform 0.12s ease;
+      touch-action: manipulation;
     }
 
-    .flame.out {
+    .cake-container:hover {
+      transform: scale(1.04);
+    }
+
+    .cake-container:active {
+      transform: scale(0.96);
+    }
+
+    .cake-svg {
+      width: clamp(240px, 72vw, 280px);
+      height: auto;
+      aspect-ratio: 280 / 250;
+      overflow: visible;
+    }
+
+    .candle-flame-wrapper {
+      transform-origin: 140px 62px;
+      animation: naturalFlicker 0.25s infinite alternate ease-in-out;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    @keyframes naturalFlicker {
+      0% { transform: scaleY(0.97) scaleX(1.03) rotate(-1.5deg); }
+      100% { transform: scaleY(1.04) scaleX(0.96) rotate(1.5deg); }
+    }
+
+    .candle-flame-wrapper.blown {
+      transform: translateY(-8px) skewX(-45deg) scale(0.1) !important;
       opacity: 0 !important;
-      transform: scale(0) translateY(-20px) !important;
     }
 
-    @keyframes flicker {
-      0% { transform: scale(1) rotate(-3deg); filter: drop-shadow(0 0 6px #ffd000); }
-      50% { transform: scale(1.15, 0.92) rotate(2deg); filter: drop-shadow(0 0 10px #ff7b00); }
-      100% { transform: scale(0.95, 1.08) rotate(-1deg); filter: drop-shadow(0 0 8px #ff4500); }
-    }
-
-    .smoke {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: rgba(220, 220, 230, 0.7);
-      border-radius: 50%;
-      pointer-events: none;
+    .smoke-trail {
       opacity: 0;
+      transform-origin: 140px 60px;
+      pointer-events: none;
     }
 
-    /* --- PHASE 4: Gift Box Section --- */
+    .smoke-trail.rise {
+      animation: wispySmoke 1s cubic-bezier(0.1, 0.7, 0.2, 1) forwards;
+    }
+
+    @keyframes wispySmoke {
+      0% { opacity: 0; transform: scale(0.4) translateY(0); }
+      25% { opacity: 0.85; transform: scale(0.9) translateY(-20px) rotate(-8deg); }
+      60% { opacity: 0.6; transform: scale(1.3) translateY(-55px) rotate(10deg); }
+      100% { opacity: 0; transform: scale(1.7) translateY(-95px) rotate(-15deg); }
+    }
+
+    .cake-exit {
+      animation: cakeLaunchOut 0.65s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards !important;
+    }
+
+    @keyframes cakeLaunchOut {
+      0% { transform: scale(1, 1) translateY(0); }
+      20% { transform: scale(1.2, 0.8) translateY(18px); }
+      45% { transform: scale(0.85, 1.25) translateY(-50px); }
+      100% { transform: scale(0.7, 1.2) translateY(-600px) rotate(15deg); opacity: 0; }
+    }
+
+    /* --- PHASE 4: Clean & Bouncy Expanding Gift Box --- */
     #giftScreen {
       display: none;
       flex-direction: column;
       align-items: center;
-      animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.3) translateY(80px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .gift-instruction {
-      font-size: 17px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-
-    .click-meter-container {
-      width: 220px;
-      height: 12px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 999px;
-      overflow: hidden;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .click-meter-bar {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, #ff6b8b, #ffbe3d);
-      border-radius: 999px;
-      transition: width 0.15s ease-out;
-      box-shadow: 0 0 12px rgba(255, 107, 139, 0.8);
-    }
-
-    .gift-box {
-      width: 200px;
-      height: 200px;
       position: relative;
-      cursor: pointer;
-      transform-origin: center bottom;
-      transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .gift-svg {
       width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 25px rgba(255, 75, 130, 0.35));
     }
 
-    .shake-lvl-1 { animation: giftShake1 0.25s ease-in-out; }
-    .shake-lvl-2 { animation: giftShake2 0.2s ease-in-out; }
-    .shake-lvl-3 { animation: giftShake3 0.15s ease-in-out; }
-
-    @keyframes giftShake1 {
-      0%, 100% { transform: rotate(0deg) scale(1); }
-      25% { transform: rotate(-5deg) scale(1.05); }
-      75% { transform: rotate(5deg) scale(1.05); }
+    .gift-slam-in {
+      animation: giftCrash 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
     }
 
-    @keyframes giftShake2 {
-      0%, 100% { transform: rotate(0deg) scale(1.05); }
-      20% { transform: rotate(-9deg) scale(1.1); }
-      40% { transform: rotate(8deg) scale(1.1); }
-      60% { transform: rotate(-6deg) scale(1.08); }
-      80% { transform: rotate(5deg) scale(1.08); }
+    @keyframes giftCrash {
+      0% {
+        opacity: 0;
+        transform: translateY(-500px) rotate(18deg) scale(0.7);
+      }
+      70% {
+        transform: translateY(18px) rotate(-4deg) scale(1.3, 0.75);
+      }
+      85% {
+        transform: translateY(-8px) rotate(2deg) scale(0.9, 1.1);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
     }
 
-    @keyframes giftShake3 {
-      0%, 100% { transform: rotate(0deg) scale(1.12); }
-      20% { transform: rotate(-14deg) translateY(-8px) scale(1.16); }
-      40% { transform: rotate(13deg) translateY(-6px) scale(1.16); }
-      60% { transform: rotate(-12deg) scale(1.14); }
-      80% { transform: rotate(10deg) scale(1.14); }
-    }
-
-    /* Floating tap sparkles */
-    .tap-sparkle {
+    .impact-dust {
       position: absolute;
+      bottom: 20px;
+      font-size: 28px;
       pointer-events: none;
-      font-size: 22px;
-      font-weight: 800;
-      color: #ffe6aa;
-      animation: floatSparkle 0.7s forwards ease-out;
+      opacity: 0;
       z-index: 10;
     }
 
-    @keyframes floatSparkle {
-      0% { opacity: 1; transform: translate(0, 0) scale(0.6); }
-      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.4); }
+    .impact-left { left: 40px; animation: dustLeft 0.5s ease-out forwards; }
+    .impact-right { right: 40px; animation: dustRight 0.5s ease-out forwards; }
+
+    @keyframes dustLeft {
+      0% { opacity: 1; transform: translateX(0) scale(0.5); }
+      100% { opacity: 0; transform: translateX(-35px) translateY(-15px) scale(1.2); }
     }
 
-    /* --- PHASE 5: The Birthday Letter Reveal --- */
+    @keyframes dustRight {
+      0% { opacity: 1; transform: translateX(0) scale(0.5); }
+      100% { opacity: 0; transform: translateX(35px) translateY(-15px) scale(1.2); }
+    }
+
+    .gift-wrap {
+      cursor: pointer;
+      position: relative;
+      transform-origin: center bottom;
+      touch-action: manipulation;
+    }
+
+    .gift-svg {
+      width: clamp(150px, 46vw, 180px);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      overflow: visible;
+    }
+
+    .stress-lines {
+      position: absolute;
+      top: -20px;
+      right: -25px;
+      font-size: 28px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      pointer-events: none;
+    }
+
+    .lid-popped {
+      transform: translateY(-130px) rotate(-35deg) scale(1.1) !important;
+      opacity: 0 !important;
+      transition: transform 0.45s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.35s ease-out !important;
+    }
+
+    /* --- PHASE 5: Letter --- */
     #letterScreen {
       display: none;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      animation: letterPop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: cleanNoteDrop 0.55s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
     }
 
-    @keyframes letterPop {
+    @keyframes cleanNoteDrop {
       0% {
         opacity: 0;
-        transform: scale(0.7) translateY(80px) rotate(-3deg);
+        transform: translateY(50px) scale(0.85) rotate(-4deg);
       }
       100% {
         opacity: 1;
-        transform: scale(1) translateY(0) rotate(0deg);
+        transform: translateY(0) scale(1) rotate(1deg);
       }
     }
 
-    .letter-card {
-      background: var(--card-bg);
-      color: var(--text-main);
-      border-radius: 28px;
-      padding: 38px 32px 32px;
+    .notebook-card {
+      background: #FFFFFF;
+      border: 3.5px solid var(--ink);
+      border-radius: 20px;
+      box-shadow: 7px 7px 0px var(--ink);
+      padding: clamp(24px, 6vw, 34px) clamp(18px, 5vw, 28px) 24px;
       width: 100%;
-      max-width: 480px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
       position: relative;
       text-align: left;
-      overflow: hidden;
     }
 
-    .letter-card::before {
-      content: "";
+    .scotch-tape {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 8px;
-      background: linear-gradient(90deg, #ff6b8b, #ffbe3d, #9c65f9, #4ecdc4);
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 84px;
+      height: 26px;
+      background: rgba(255, 209, 36, 0.65);
+      border: 2px dashed rgba(24, 24, 27, 0.6);
+      border-radius: 4px;
     }
 
-    .stamp-container {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      width: 52px;
-      height: 60px;
-      background: #ffe3ec;
-      border: 2px dashed #ff6b8b;
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: #ff6b8b;
-      transform: rotate(8deg);
-    }
-
-    .stamp-sub {
-      font-size: 8px;
+    .note-header {
+      font-family: 'Shantell Sans', cursive;
+      font-size: clamp(22px, 6vw, 26px);
       font-weight: 800;
-      letter-spacing: 0.5px;
-      margin-top: 2px;
+      color: var(--pink);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      transform: rotate(-1deg);
     }
 
-    .letter-greeting {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
+    .note-body {
+      font-family: 'Gaegu', cursive;
+      font-size: clamp(20px, 5.2vw, 24px);
+      line-height: 1.35;
       font-weight: 700;
-      color: #90135d;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .letter-body {
-      font-family: 'Caveat', cursive;
-      font-size: 24px;
-      line-height: 1.45;
-      color: #3b2848;
-      margin-bottom: 24px;
+      color: #27272A;
+      margin-bottom: 18px;
       white-space: pre-line;
     }
 
-    .letter-signature {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      color: #7b4f91;
+    .note-footer {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      border-top: 1px dashed rgba(0, 0, 0, 0.12);
-      padding-top: 16px;
+      align-items: center;
+      border-top: 2.5px dashed var(--ink);
+      padding-top: 14px;
+      font-size: clamp(13px, 3.8vw, 15px);
+      font-weight: 800;
+      color: var(--ink);
     }
 
-    .re-confetti-btn {
-      margin-top: 22px;
-      padding: 12px 28px;
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 999px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: all 0.2s;
-    }
-
-    .re-confetti-btn:hover {
-      background: rgba(255, 255, 255, 0.22);
-      transform: translateY(-2px);
-    }
-
-    .re-confetti-btn:active {
-      transform: scale(0.96);
+    .note-again-btn {
+      margin-top: 20px;
+      background: var(--pink);
+      color: #FFFFFF;
+      box-shadow: 5px 5px 0px var(--ink);
     }
   </style>
 </head>
 <body>
-  <div class="bg-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  <!-- High performance hardware accelerated animated grid layer -->
+  <div class="bg-grid"></div>
+
+  <!-- Animated Background Doodles -->
+  <div class="doodle-bg">
+    <svg class="doodle-item doodle-1" viewBox="0 0 24 24">
+      <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z" />
+    </svg>
+    <svg class="doodle-item doodle-2" viewBox="0 0 64 32">
+      <path d="M4 16 Q 18 4, 32 16 T 60 16" />
+    </svg>
+    <svg class="doodle-item doodle-3" viewBox="0 0 24 24">
+      <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z" />
+    </svg>
+    <svg class="doodle-item doodle-4" viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="18" stroke-dasharray="6 4" />
+    </svg>
+    <svg class="doodle-item doodle-5" viewBox="0 0 30 30">
+      <path d="M15 2 V28 M2 15 H28" stroke-width="3" />
+    </svg>
+    <svg class="doodle-item doodle-6" viewBox="0 0 32 32">
+      <path d="M16 28 C6 20, 2 14, 2 9 A7 7 0 0 1 16 7 A7 7 0 0 1 30 9 C30 14, 26 20, 16 28 Z" stroke-width="2.5" />
+    </svg>
   </div>
 
-  <main id="app">
+  <main id="stage">
     <!-- PHASE 1: Gate -->
     <div id="gateScreen">
-      <div class="gate-badge">✨ Special Delivery ✨</div>
-      <h1 class="gate-title">For Betül</h1>
-      <p class="gate-subtitle">A little celebration engineered especially for your birthday.</p>
-      <button class="start-btn" id="startBtn">Open Your Surprise 🎈</button>
+      <div class="title-badge">🎉 1 KASIM SÜRPRİZİ</div>
+      <h1 class="main-title">İYİ Kİ DOĞDUN<br>BETÜL!</h1>
+      <button class="comic-btn" id="startBtn">AÇ BAKALIM 👉</button>
     </div>
 
     <!-- PHASE 2: Countdown -->
     <div id="countdownScreen">
-      <div class="countdown-number" id="countdownNum">3</div>
-      <div class="countdown-label">Get Ready...</div>
+      <div class="comic-countdown" id="countVal">3</div>
     </div>
 
-    <!-- PHASE 3: Cake Section -->
+    <!-- PHASE 3: Cylindrical Cake -->
     <div id="cakeScreen">
-      <div class="instruction-badge">
-        <span>✨</span> Make a wish & tap the cake! <span>✨</span>
-      </div>
-      <div class="cake-container" id="cakeContainer" title="Click to blow out candles!">
-        <!-- Stylized SVG Cake -->
-        <svg class="cake-svg" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Plate -->
-          <ellipse cx="130" cy="240" rx="110" ry="14" fill="#E2E8F0" />
-          <ellipse cx="130" cy="237" rx="100" ry="10" fill="#FFFFFF" />
+      <div class="prompt-bubble">Dilek tut & mumu üfle! 🕯️👇</div>
 
-          <!-- Bottom Tier -->
-          <path d="M40 185C40 185 40 230 130 230C220 230 220 185 220 185V160H40V185Z" fill="#F472B6" />
-          <!-- Tier Frosting Dripping -->
-          <path d="M40 160C40 160 55 178 70 168C85 158 100 178 115 168C130 158 145 180 160 168C175 156 190 178 205 168C215 161 220 160 220 160H40Z" fill="#FBCFE8" />
+      <div class="cake-container" id="cakeContainer" title="Üfle ve tıkla!">
+        <svg class="cake-svg" viewBox="0 0 280 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- 1. Pedestal Platter Stand -->
+          <ellipse cx="140" cy="236" rx="100" ry="14" fill="#18181B" opacity="0.15" />
+          <ellipse cx="140" cy="225" rx="115" ry="18" fill="#18181B" />
+          <ellipse cx="140" cy="220" rx="112" ry="16" fill="#FFFFFF" stroke="#18181B" stroke-width="4" />
 
-          <!-- Middle Tier -->
-          <path d="M60 135C60 135 60 170 130 170C200 170 200 135 200 135V115H60V135Z" fill="#C084FC" />
-          <!-- Middle Dripping -->
-          <path d="M60 115C60 115 75 130 90 122C105 114 120 132 135 122C150 112 165 130 180 122C192 115 200 115 200 115H60Z" fill="#E9D5FF" />
+          <!-- 2. Cake Body Cylinder -->
+          <path d="M 55 135 V 210 A 85 22 0 0 0 225 210 V 135 Z" fill="#FFF4D0" stroke="#18181B" stroke-width="4.5" stroke-linejoin="round" />
 
-          <!-- Sprinkles & Details -->
-          <circle cx="85" cy="190" r="3.5" fill="#FDE047" />
-          <circle cx="115" cy="205" r="4" fill="#67E8F9" />
-          <circle cx="150" cy="195" r="3.5" fill="#A7F3D0" />
-          <circle cx="180" cy="202" r="4" fill="#FDE047" />
-          <circle cx="95" cy="145" r="3.5" fill="#F43F5E" />
-          <circle cx="130" cy="150" r="4" fill="#FDE047" />
-          <circle cx="165" cy="142" r="3.5" fill="#67E8F9" />
+          <!-- Sponge Middle Cream Strip -->
+          <path d="M 55 170 A 85 22 0 0 0 225 170 V 182 A 85 22 0 0 1 55 182 Z" fill="#FFD124" stroke="#18181B" stroke-width="3" />
 
-          <!-- Candles -->
-          <!-- Left Candle -->
-          <rect x="90" y="80" width="8" height="35" rx="3" fill="#38BDF8" />
-          <path d="M92 85L96 90M92 95L96 100" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
-          <ellipse class="flame flame-1" cx="94" cy="72" rx="6" ry="10" fill="#F59E0B" />
-          <ellipse class="flame flame-1" cx="94" cy="73" rx="3.5" ry="6" fill="#FEF08A" />
+          <!-- 3. Dripping Frosting on Sides -->
+          <path d="M 55 135 
+                   C 65 165, 75 165, 82 145 
+                   C 90 170, 102 170, 110 142 
+                   C 118 175, 132 175, 142 144 
+                   C 152 172, 166 172, 175 142 
+                   C 184 165, 196 165, 204 140 
+                   C 212 158, 220 155, 225 135 
+                   A 85 22 0 0 1 55 135 Z" 
+                fill="#FF2E63" stroke="#18181B" stroke-width="4" stroke-linejoin="round" />
 
-          <!-- Center Candle -->
-          <rect x="126" y="70" width="8" height="45" rx="3" fill="#EC4899" />
-          <path d="M128 77L132 82M128 89L132 94M128 101L132 106" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
-          <ellipse class="flame flame-2" cx="130" cy="62" rx="7" ry="12" fill="#F59E0B" />
-          <ellipse class="flame flame-2" cx="130" cy="63" rx="4" ry="7.5" fill="#FEF08A" />
+          <!-- 4. Cake Top Surface -->
+          <ellipse cx="140" cy="135" rx="85" ry="22" fill="#FF2E63" stroke="#18181B" stroke-width="4.5" />
+          <path d="M 75 133 A 65 16 0 0 1 195 130" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8" />
 
-          <!-- Right Candle -->
-          <rect x="162" y="80" width="8" height="35" rx="3" fill="#FBBF24" />
-          <path d="M164 85L168 90M164 95L168 100" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
-          <ellipse class="flame flame-3" cx="166" cy="72" rx="6" ry="10" fill="#F59E0B" />
-          <ellipse class="flame flame-3" cx="166" cy="73" rx="3.5" ry="6" fill="#FEF08A" />
-        </svg>
-      </div>
-    </div>
+          <!-- Sprinkles on top -->
+          <circle cx="85" cy="135" r="4.5" fill="#FFD124" stroke="#18181B" stroke-width="2" />
+          <circle cx="108" cy="142" r="4.5" fill="#FFFFFF" stroke="#18181B" stroke-width="2" />
+          <circle cx="140" cy="146" r="4.5" fill="#FFD124" stroke="#18181B" stroke-width="2" />
+          <circle cx="172" cy="142" r="4.5" fill="#FFFFFF" stroke="#18181B" stroke-width="2" />
+          <circle cx="195" cy="135" r="4.5" fill="#FFD124" stroke="#18181B" stroke-width="2" />
 
-    <!-- PHASE 4: Gift Box Section -->
-    <div id="giftScreen">
-      <div class="gift-instruction" id="giftPrompt">Tap rapidly to open! 🎁 (<span id="tapsLeft">7</span>)</div>
-      <div class="click-meter-container">
-        <div class="click-meter-bar" id="meterBar"></div>
-      </div>
-      <div class="gift-box" id="giftBox">
-        <svg class="gift-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Box Body -->
-          <rect x="25" y="75" width="150" height="110" rx="16" fill="#7C3AED" />
-          <rect x="25" y="75" width="150" height="110" rx="16" fill="url(#giftGradient)" />
-          
-          <!-- Box Ribbon Horizontal & Vertical -->
-          <rect x="88" y="75" width="24" height="110" fill="#F59E0B" />
-          <rect x="25" y="118" width="150" height="24" fill="#F59E0B" />
+          <!-- 5. Candle -->
+          <rect x="134" y="70" width="12" height="62" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="3.5" />
+          <path d="M 134 82 L 146 88 M 134 96 L 146 102 M 134 110 L 146 116 M 134 124 L 146 130" stroke="#FF2E63" stroke-width="3.5" stroke-linecap="round" />
+          <path d="M 140 70 L 140 62" stroke="#18181B" stroke-width="3.5" stroke-linecap="round" />
 
-          <!-- Box Lid -->
-          <g id="boxLid">
-            <rect x="15" y="55" width="170" height="26" rx="8" fill="#6D28D9" />
-            <rect x="15" y="55" width="170" height="26" rx="8" fill="url(#lidGradient)" />
-            <rect x="88" y="55" width="24" height="26" fill="#FBBF24" />
-            
-            <!-- Ribbon Bow Top -->
-            <path d="M75 55C55 35 60 18 78 28C92 36 96 55 96 55C96 55 100 36 114 28C132 18 137 35 117 55" fill="#F59E0B" stroke="#D97706" stroke-width="2" />
-            <ellipse cx="96" cy="53" rx="10" ry="7" fill="#FBBF24" />
+          <!-- 6. Anchored Flame -->
+          <g class="candle-flame-wrapper" id="flameGroup">
+            <path d="M 140 26 C 126 44, 128 62, 140 62 C 152 62, 154 44, 140 26 Z" fill="#FFD124" stroke="#18181B" stroke-width="3.5" />
+            <path d="M 140 38 C 133 48, 134 58, 140 58 C 146 58, 147 48, 140 38 Z" fill="#FFFFFF" />
           </g>
 
-          <defs>
-            <linearGradient id="giftGradient" x1="25" y1="75" x2="175" y2="185" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#8B5CF6" stop-opacity="0.3" />
-              <stop offset="1" stop-color="#4C1D95" stop-opacity="0.8" />
-            </linearGradient>
-            <linearGradient id="lidGradient" x1="15" y1="55" x2="185" y2="81" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#A78BFA" stop-opacity="0.4" />
-              <stop offset="1" stop-color="#5B21B6" stop-opacity="0.7" />
-            </linearGradient>
-          </defs>
+          <!-- 7. Wispy Smoke -->
+          <g class="smoke-trail" id="smokePath">
+            <path d="M 140 60 C 132 45, 148 35, 138 20 C 128 5, 150 -10, 136 -30" stroke="#18181B" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="12 6" />
+            <circle cx="137" cy="18" r="6" fill="#18181B" opacity="0.3" />
+            <circle cx="142" cy="-2" r="8" fill="#18181B" opacity="0.2" />
+          </g>
         </svg>
       </div>
     </div>
 
-    <!-- PHASE 5: Birthday Letter -->
+    <!-- PHASE 4: Clean & Bouncy Expanding Gift Box -->
+    <div id="giftScreen">
+      <div class="prompt-bubble" id="giftPrompt">TIKLA PATLAT! 🎁</div>
+      <div id="dustContainer"></div>
+
+      <div class="gift-wrap" id="giftWrap">
+        <span class="stress-lines" id="stressMark">💢</span>
+        <svg class="gift-svg" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Solid Box Body -->
+          <rect x="25" y="65" width="120" height="90" rx="14" fill="#FF2E63" stroke="#18181B" stroke-width="4.5" />
+          <!-- Ribbon vertical -->
+          <rect x="73" y="65" width="24" height="90" fill="#FFD124" stroke="#18181B" stroke-width="4" />
+          <!-- Ribbon horizontal -->
+          <rect x="25" y="100" width="120" height="20" fill="#FFD124" stroke="#18181B" stroke-width="4" />
+
+          <!-- Box Lid Group -->
+          <g id="boxLid">
+            <rect x="16" y="46" width="138" height="24" rx="8" fill="#FF2E63" stroke="#18181B" stroke-width="4.5" />
+            <rect x="73" y="46" width="24" height="24" fill="#FFD124" stroke="#18181B" stroke-width="4" />
+            <!-- Bow -->
+            <path d="M52 46 C 30 24, 38 6, 62 18 C 76 26, 82 46, 82 46 C 82 46, 88 26, 102 18 C 126 6, 134 24, 112 46" fill="#FFD124" stroke="#18181B" stroke-width="4" />
+            <circle cx="82" cy="44" r="8" fill="#FFFFFF" stroke="#18181B" stroke-width="3.5" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- PHASE 5: Letter -->
     <div id="letterScreen">
-      <div class="letter-card">
-        <div class="stamp-container">
-          🎂
-          <span class="stamp-sub">OCT 2026</span>
-        </div>
-        <h2 class="letter-greeting">İyi ki Doğdun Betül! 🎉</h2>
-        <div class="letter-body">
-Yeni yaşın sana sağlık, sonsuz neşe, bol kahkaha ve aklından geçen tüm güzellikleri getirsin! 
+      <div class="notebook-card" id="letterCard">
+        <div class="scotch-tape"></div>
+        <h2 class="note-header">İyi ki doğdun Betül! 🥳</h2>
+        <div class="note-body">Doğum günün için öyle sıradan bir mesaj atmak ya da geçiştirmek asla olmazdı. Günlerdir sırf yüzünde ufak bir tebessüm oluşturabilmek için satır satır bu siteyi kodlamakla uğraşıyorum (ciddiyim, piksel piksel emek var burada dhsjkd).
 
-Tüm dileklerinin gerçek olduğu, her gününün bir öncekinden çok daha parlak ve güzel geçtiği muhteşem bir yıl olsun.
+Yeni yaşın sana aklından geçen tüm güzellikleri, hak ettiğin tüm başarıları, bol kahkahayı ve en güzel anları getirsin. Enerjin ve yüzündeki o samimi gülümseme hiçbir zaman eksik olmasın.
 
-İyi ki varsın, mutlu ve harika yıllara! 💖✨
-        </div>
-        <div class="letter-signature">
-          <span>Sent with celebration & good vibes</span>
-          <span>🎂🥳</span>
+İyi ki doğdun, iyi ki varsın! Nice harika, musmutlu yaşlara! ✨💛</div>
+        <div class="note-footer">
+          <span>1 KASIM 2026</span>
+          <span>🎂🎈</span>
         </div>
       </div>
-      <button class="re-confetti-btn" id="reConfettiBtn">Blow Confetti Again 🎊</button>
+      <button class="comic-btn note-again-btn" id="againBtn">BİR DAHA PATLAT 🎊</button>
     </div>
   </main>
 
   <script>
     /* =========================================================
-       AUDIO SYNTHESIZER (Pure Web Audio API - Zero dependencies)
+       ZERO FONT FLASH GUARANTEE
        ========================================================= */
-    class BirthdayAudio {
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+      setTimeout(() => {
+        document.documentElement.classList.add('fonts-loaded');
+      }, 600);
+    } else {
+      document.documentElement.classList.add('fonts-loaded');
+    }
+
+    /* =========================================================
+       AUDIO SYNTHESIZER: Bouncy Cartoon FX
+       ========================================================= */
+    class CartoonAudio {
       constructor() {
         this.ctx = null;
       }
-
       init() {
         if (!this.ctx) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -694,322 +658,305 @@ Tüm dileklerinin gerçek olduğu, her gününün bir öncekinden çok daha parl
         }
       }
 
-      playTone(freq, type = 'sine', duration = 0.2, gainVal = 0.2) {
-        if (!this.ctx) return;
-        try {
-          const osc = this.ctx.createOscillator();
-          const gain = this.ctx.createGain();
-          osc.type = type;
-          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-          
-          gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
-
-          osc.connect(gain);
-          gain.connect(this.ctx.destination);
-
-          osc.start();
-          osc.stop(this.ctx.currentTime + duration);
-        } catch (e) {
-          console.warn(e);
-        }
-      }
-
-      playCountdownBeep(isLast = false) {
-        this.init();
-        if (isLast) {
-          // Celebratory chord
-          this.playTone(523.25, 'triangle', 0.5, 0.3); // C5
-          this.playTone(659.25, 'triangle', 0.5, 0.25); // E5
-          this.playTone(783.99, 'triangle', 0.5, 0.25); // G5
-          this.playTone(1046.50, 'sine', 0.6, 0.3); // C6
-        } else {
-          this.playTone(440, 'sine', 0.15, 0.2); // A4 beep
-        }
-      }
-
-      playPoof() {
+      pop(pitch = 300) {
         this.init();
         if (!this.ctx) return;
-        // White noise breath / poof for blowing candles
-        const bufferSize = this.ctx.sampleRate * 0.4;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(pitch, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(pitch * 1.8, this.ctx.currentTime + 0.1);
+
+        gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.12);
+      }
+
+      boing() {
+        this.init();
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(220, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, this.ctx.currentTime + 0.4);
+
+        gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.45);
+      }
+
+      thud() {
+        this.init();
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.2);
+
+        gain.gain.setValueAtTime(0.4, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.22);
+      }
+
+      whoosh() {
+        this.init();
+        if (!this.ctx) return;
+        const bufferSize = this.ctx.sampleRate * 0.35;
         const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
         const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = Math.random() * 2 - 1;
-        }
+        for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
 
         const noise = this.ctx.createBufferSource();
         noise.buffer = buffer;
-
         const filter = this.ctx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1000, this.ctx.currentTime);
-        filter.frequency.linearRampToValueAtTime(200, this.ctx.currentTime + 0.4);
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(1400, this.ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(320, this.ctx.currentTime + 0.35);
 
         const gain = this.ctx.createGain();
-        gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
+        gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
 
         noise.connect(filter);
         filter.connect(gain);
         gain.connect(this.ctx.destination);
-
         noise.start();
       }
 
-      playTapBox(pitchModifier = 1) {
+      fanfare() {
         this.init();
-        // Bouncy pluck sound
-        this.playTone(280 * pitchModifier, 'triangle', 0.1, 0.3);
-        this.playTone(420 * pitchModifier, 'sine', 0.08, 0.2);
-      }
-
-      playBoxExplode() {
-        this.init();
-        // Fanfare fanfare arpeggio
-        const notes = [392, 523.25, 659.25, 783.99, 1046.5];
+        const notes = [440, 554.37, 659.25, 880];
         notes.forEach((freq, idx) => {
           setTimeout(() => {
-            this.playTone(freq, 'triangle', 0.45, 0.25);
+            if (!this.ctx) return;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.35);
           }, idx * 75);
         });
       }
     }
 
-    const sound = new BirthdayAudio();
+    const sound = new CartoonAudio();
 
-    /* =========================================================
-       CONFETTI CANNON HELPER
-       ========================================================= */
-    function fireMegaConfetti() {
+    function blastConfetti() {
       if (typeof confetti !== 'function') return;
-
-      const count = 220;
+      const count = 180;
       const defaults = {
-        origin: { y: 0.7 },
-        spread: 360,
-        ticks: 240,
-        gravity: 0.8,
-        decay: 0.94,
-        startVelocity: 35,
-        shapes: ['square', 'circle'],
-        colors: ['#ff6b8b', '#ffbe3d', '#9c65f9', '#4ecdc4', '#ff4d6d', '#ffffff']
+        origin: { y: 0.65 },
+        spread: 120,
+        ticks: 200,
+        gravity: 0.85,
+        decay: 0.93,
+        colors: ['#FF2E63', '#FFD124', '#18181B', '#FFFFFF']
       };
-
-      confetti({ ...defaults, particleCount: Math.floor(count * 0.45) });
-      
+      confetti({ ...defaults, particleCount: Math.floor(count * 0.5) });
       setTimeout(() => {
-        confetti({
-          ...defaults,
-          particleCount: Math.floor(count * 0.35),
-          origin: { x: 0.2, y: 0.6 },
-          angle: 60,
-          spread: 80
-        });
-        confetti({
-          ...defaults,
-          particleCount: Math.floor(count * 0.35),
-          origin: { x: 0.8, y: 0.6 },
-          angle: 120,
-          spread: 80
-        });
-      }, 250);
+        confetti({ ...defaults, particleCount: Math.floor(count * 0.5), angle: 60, spread: 80, origin: { x: 0.2, y: 0.6 } });
+        confetti({ ...defaults, particleCount: Math.floor(count * 0.5), angle: 120, spread: 80, origin: { x: 0.8, y: 0.6 } });
+      }, 150);
     }
 
-    /* =========================================================
-       FLOW CONTROLLER
-       ========================================================= */
+    /* DOM ELEMENTS */
     const gateScreen = document.getElementById('gateScreen');
     const startBtn = document.getElementById('startBtn');
     const countdownScreen = document.getElementById('countdownScreen');
-    const countdownNum = document.getElementById('countdownNum');
+    const countVal = document.getElementById('countVal');
     const cakeScreen = document.getElementById('cakeScreen');
     const cakeContainer = document.getElementById('cakeContainer');
+    const flameGroup = document.getElementById('flameGroup');
+    const smokePath = document.getElementById('smokePath');
     const giftScreen = document.getElementById('giftScreen');
-    const giftBox = document.getElementById('giftBox');
-    const meterBar = document.getElementById('meterBar');
-    const tapsLeftSpan = document.getElementById('tapsLeft');
+    const giftWrap = document.getElementById('giftWrap');
+    const boxLid = document.getElementById('boxLid');
+    const stressMark = document.getElementById('stressMark');
+    const dustContainer = document.getElementById('dustContainer');
     const letterScreen = document.getElementById('letterScreen');
-    const reConfettiBtn = document.getElementById('reConfettiBtn');
+    const againBtn = document.getElementById('againBtn');
 
-    // 1. START GATE
+    /* 1. START GATE */
     startBtn.addEventListener('click', () => {
       sound.init();
+      sound.pop(400);
+      gateScreen.style.transition = 'all 0.25s ease';
       gateScreen.style.opacity = '0';
-      gateScreen.style.transform = 'scale(0.8)';
+      gateScreen.style.transform = 'scale(0.8) rotate(-4deg)';
       setTimeout(() => {
         gateScreen.style.display = 'none';
         runCountdown();
-      }, 400);
+      }, 250);
     });
 
-    // 2. COUNTDOWN
+    /* 2. COUNTDOWN */
     function runCountdown() {
       countdownScreen.style.display = 'flex';
-      let count = 3;
-      countdownNum.textContent = count;
-      sound.playCountdownBeep(false);
+      let n = 3;
+      countVal.textContent = n;
+      sound.pop(320);
 
-      const interval = setInterval(() => {
-        count--;
-        if (count > 0) {
-          countdownNum.textContent = count;
-          // Trigger re-animation
-          countdownNum.style.animation = 'none';
-          void countdownNum.offsetWidth;
-          countdownNum.style.animation = 'countPulse 0.95s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite';
-          sound.playCountdownBeep(false);
+      const timer = setInterval(() => {
+        n--;
+        if (n > 0) {
+          countVal.textContent = n;
+          countVal.style.animation = 'none';
+          void countVal.offsetWidth;
+          countVal.style.animation = 'doodleWiggle 0.85s infinite cubic-bezier(0.36, 0.07, 0.19, 0.97)';
+          sound.pop(320 + (3 - n) * 60);
         } else {
-          clearInterval(interval);
-          sound.playCountdownBeep(true);
-          fireMegaConfetti();
-
-          countdownScreen.style.opacity = '0';
-          setTimeout(() => {
-            countdownScreen.style.display = 'none';
-            revealCake();
-          }, 350);
+          clearInterval(timer);
+          sound.pop(650);
+          blastConfetti();
+          countdownScreen.style.display = 'none';
+          showCake();
         }
-      }, 1000);
+      }, 900);
     }
 
-    // 3. REVEAL CAKE
-    function revealCake() {
+    /* 3. CAKE & CANDLE BLOW INTERACTION */
+    function showCake() {
       cakeScreen.style.display = 'flex';
     }
 
-    // Cake click -> Blow out candles
-    let cakeClicked = false;
+    let cakeBlown = false;
     cakeContainer.addEventListener('click', () => {
-      if (cakeClicked) return;
-      cakeClicked = true;
+      if (cakeBlown) return;
+      cakeBlown = true;
 
-      sound.playPoof();
-      // Extinguish flames
-      document.querySelectorAll('.flame').forEach(f => f.classList.add('out'));
+      sound.whoosh();
+      flameGroup.classList.add('blown');
+      smokePath.classList.add('rise');
 
-      // Mini confetti on cake
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 50,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-      }
-
-      // Smooth zoom and fade out cake
       setTimeout(() => {
-        cakeScreen.style.transition = 'all 0.6s cubic-bezier(0.5, 0, 0.75, 0)';
-        cakeScreen.style.transform = 'scale(0.3) rotate(6deg)';
-        cakeScreen.style.opacity = '0';
+        sound.boing();
+        cakeContainer.classList.add('cake-exit');
 
         setTimeout(() => {
           cakeScreen.style.display = 'none';
-          revealGift();
+          showGift();
         }, 550);
-      }, 700);
+      }, 650);
     });
 
-    // 4. REVEAL GIFT & RAPID CLICKS
-    function revealGift() {
+    /* 4. EXPANDING GIFT BOX WITH CLEAN BOUNCY POP */
+    let currentScale = 1;
+    let targetScale = 1;
+    let isPopped = false;
+    let animId = null;
+
+    const MAX_BURST_SCALE = 1.55; 
+    const TAP_POWER = 0.18;      
+    const DECAY_SPEED = 0.007;
+
+    function showGift() {
       giftScreen.style.display = 'flex';
-    }
-
-    const TARGET_TAPS = 7;
-    let tapCount = 0;
-    let isOpening = false;
-
-    giftBox.addEventListener('click', (e) => {
-      if (isOpening) return;
-      tapCount++;
-
-      // Pitch increases as you get closer to opening
-      const pitchModifier = 1 + (tapCount / TARGET_TAPS) * 0.7;
-      sound.playTapBox(pitchModifier);
-
-      // Update meter
-      const pct = Math.min((tapCount / TARGET_TAPS) * 100, 100);
-      meterBar.style.width = pct + '%';
-      tapsLeftSpan.textContent = Math.max(TARGET_TAPS - tapCount, 0);
-
-      // Create floating tap sparkle
-      spawnTapSparkle(e.clientX, e.clientY);
-
-      // Shake animation
-      giftBox.classList.remove('shake-lvl-1', 'shake-lvl-2', 'shake-lvl-3');
-      void giftBox.offsetWidth; // trigger reflow
-
-      if (tapCount < 3) {
-        giftBox.classList.add('shake-lvl-1');
-      } else if (tapCount < 6) {
-        giftBox.classList.add('shake-lvl-2');
-      } else {
-        giftBox.classList.add('shake-lvl-3');
-      }
-
-      // Check if unlocked
-      if (tapCount >= TARGET_TAPS) {
-        isOpening = true;
-        openGift();
-      }
-    });
-
-    function spawnTapSparkle(x, y) {
-      const el = document.createElement('div');
-      el.className = 'tap-sparkle';
-      const emojis = ['✨', '⭐', '💖', '🎉', '💥'];
-      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-
-      const rect = giftBox.getBoundingClientRect();
-      const originX = x || (rect.left + rect.width / 2);
-      const originY = y || (rect.top + rect.height / 2);
-
-      el.style.left = originX + 'px';
-      el.style.top = originY + 'px';
-
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 40 + Math.random() * 50;
-      el.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
-      el.style.setProperty('--ty', Math.sin(angle) * distance - 20 + 'px');
-
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 700);
-    }
-
-    function openGift() {
-      sound.playBoxExplode();
-      fireMegaConfetti();
-
-      // Explode the box lid
-      const lid = document.getElementById('boxLid');
-      if (lid) {
-        lid.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s';
-        lid.style.transform = 'translateY(-120px) rotate(-25deg)';
-        lid.style.opacity = '0';
-      }
+      giftWrap.classList.add('gift-slam-in');
 
       setTimeout(() => {
-        giftScreen.style.transition = 'all 0.5s ease-out';
-        giftScreen.style.opacity = '0';
-        giftScreen.style.transform = 'scale(0.8)';
+        sound.thud();
+        spawnDust();
+      }, 420);
 
-        setTimeout(() => {
-          giftScreen.style.display = 'none';
-          revealLetter();
-        }, 450);
+      setTimeout(() => {
+        giftWrap.classList.remove('gift-slam-in');
+        startGiftLoop();
       }, 600);
     }
 
-    // 5. REVEAL LETTER
-    function revealLetter() {
-      letterScreen.style.display = 'flex';
-      setTimeout(fireMegaConfetti, 400);
+    function spawnDust() {
+      dustContainer.innerHTML = `
+        <span class="impact-dust impact-left">💨</span>
+        <span class="impact-dust impact-right">💨</span>
+      `;
+      setTimeout(() => { dustContainer.innerHTML = ''; }, 600);
     }
 
-    reConfettiBtn.addEventListener('click', () => {
-      sound.playCountdownBeep(true);
-      fireMegaConfetti();
+    function startGiftLoop() {
+      function loop() {
+        if (isPopped) return;
+
+        if (targetScale > 1) {
+          targetScale -= DECAY_SPEED;
+          if (targetScale < 1) targetScale = 1;
+        }
+
+        currentScale += (targetScale - currentScale) * 0.22;
+        giftWrap.style.transform = `scale(${currentScale})`;
+
+        if (currentScale > 1.25) {
+          stressMark.style.opacity = '1';
+        } else {
+          stressMark.style.opacity = '0';
+        }
+
+        animId = requestAnimationFrame(loop);
+      }
+      animId = requestAnimationFrame(loop);
+    }
+
+    giftWrap.addEventListener('pointerdown', () => {
+      if (isPopped) return;
+
+      targetScale += TAP_POWER;
+      sound.pop(260 + (currentScale - 1) * 350);
+
+      const angle = (Math.random() - 0.5) * 16;
+      giftWrap.style.transform = `scale(${currentScale * 1.06}) rotate(${angle}deg)`;
+
+      if (targetScale >= MAX_BURST_SCALE) {
+        isPopped = true;
+        cancelAnimationFrame(animId);
+        popOpen();
+      }
+    });
+
+    function popOpen() {
+      sound.fanfare();
+      blastConfetti();
+
+      boxLid.classList.add('lid-popped');
+
+      setTimeout(() => {
+        giftScreen.style.transition = 'all 0.35s cubic-bezier(0.4, 0, 1, 1)';
+        giftScreen.style.opacity = '0';
+        giftScreen.style.transform = 'scale(0.85) translateY(20px)';
+        
+        setTimeout(() => {
+          giftScreen.style.display = 'none';
+          showLetter();
+        }, 320);
+      }, 400);
+    }
+
+    /* 5. LETTER */
+    function showLetter() {
+      letterScreen.style.display = 'flex';
+      setTimeout(blastConfetti, 250);
+    }
+
+    againBtn.addEventListener('click', () => {
+      sound.pop(500);
+      blastConfetti();
     });
   </script>
 </body>
